@@ -1,22 +1,22 @@
 import 'dart:convert';
 
-CollectorData CollectorDataFromJson(String str) =>
-    CollectorData.fromJson(jsonDecode(str));
+ProfileData ProfileDataFromJson(String str) =>
+    ProfileData.fromJson(jsonDecode(str));
 
-String CollectorDataToJson(CollectorData data) => json.encode(data.toJson());
+String ProfileDataToJson(ProfileData data) => json.encode(data.toJson());
 
-class CollectorData {
+class ProfileData {
   final int? success;
   final String? message;
   final Data? data;
 
-  CollectorData({
+  ProfileData({
     this.success,
     this.message,
     this.data,
   });
 
-  factory CollectorData.fromJson(Map<String, dynamic> json) => CollectorData(
+  factory ProfileData.fromJson(Map<String, dynamic> json) => ProfileData(
     success: json["success"],
     message: json["message"],
     data: Data.fromJson(json["data"]),
@@ -30,28 +30,40 @@ class CollectorData {
 }
 
 class Data {
+  final String? email;
   final String? fullName;
-  final String? balance;
+  final String? phone;
+  final dynamic googleId;
+  final dynamic facebookId;
   final dynamic image;
   final dynamic emailVerifiedAt;
 
   Data({
+    this.email,
     this.fullName,
-    this.balance,
+    this.phone,
+    this.googleId,
+    this.facebookId,
     this.image,
     this.emailVerifiedAt,
   });
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
+    email: json["email"],
     fullName: json["full_name"],
-    balance: json["balance"],
+    phone: json["phone"],
+    googleId: json["google_id"],
+    facebookId: json["facebook_id"],
     image: json["image"],
     emailVerifiedAt: json["email_verified_at"],
   );
 
   Map<String, dynamic> toJson() => {
+    "email": email,
     "full_name": fullName,
-    "balance": balance,
+    "phone": phone,
+    "google_id": googleId,
+    "facebook_id": facebookId,
     "image": image,
     "email_verified_at": emailVerifiedAt,
   };

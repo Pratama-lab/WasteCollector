@@ -26,17 +26,13 @@ class _SplashScreenState extends State<SplashScreen> {
       print('token is null');
       var duration = const Duration(seconds: 2);
       Timer(duration, () {
-        Navigator.of(context).pushReplacement(new MaterialPageRoute(builder: (_) {
-          return new LoginScreen();
-        }));
+        Navigator.of(context).pushReplacement(new MaterialPageRoute(builder: (context) => LoginScreen() ));
       });
     } else {
       print('token is not null');
       var duration = const Duration(seconds: 2);
       Timer(duration, () {
-        Navigator.of(context).pushReplacement(new MaterialPageRoute(builder: (_) {
-          return new Navigation();
-        }));
+        Navigator.of(context).pushReplacement(new MaterialPageRoute(builder: (context) => Navigation()));
       });
     }
   }

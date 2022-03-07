@@ -7,4 +7,5 @@ class API {
   static const String updateProfileImage = 'api/userdata/update/image';
   static const String updateDeviceToken = 'api/userdata/update/device-token';
   static const String getCollectionHistory = 'api/wastecollector/collection/history';
+  static const String getCollectorDetail = 'api/wastecollector/collection/';
 }

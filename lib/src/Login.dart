@@ -38,6 +38,9 @@ class _LoginScreenState extends State<LoginScreen> {
     
     if (bodyJSON['message'] == 'login success') {
       prefs.setString('token', bodyJSON['data']['token']);
+      setState(() {
+        loading = false;
+      });
       Navigator.of(context).pushReplacement(new MaterialPageRoute(builder: (context) => new Navigation(),));
     }
   }
@@ -53,95 +56,112 @@ class _LoginScreenState extends State<LoginScreen> {
     return ScreenUtilInit(
       designSize: Size(480, 853.3),
       builder: () => Scaffold(
-        body: SafeArea(
-          child: SingleChildScrollView(
-            child: Column(
-              children: <Widget>[
-                Container(
-                  margin: const EdgeInsets.only(top: 65.7),
-                  child: Center(
-                    child: Image.asset('images/main_logo.png', width: 196.1, height: 147.8,),
+        body: SingleChildScrollView(
+          child: Stack(
+            children: [
+              Column(
+                children: <Widget>[
+                  Container(
+                    margin: const EdgeInsets.only(top: 70),
+                    child: Center(
+                      child: Image.asset('images/main_logo.png', width: 196.1, height: 147.8,),
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 10),
-                  child: Text('Waste Collector', style: TextStyle(color: Color(0xFFF8C503), fontFamily: 'DiodrumCyrillicBold', fontSize: 25.sp),),
-                ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: Text('Waste Collector', style: TextStyle(color: Color(0xFFF8C503), fontFamily: 'DiodrumCyrillicBold', fontSize: 25.sp),),
+                  ),
 
-                Container(
-                  margin: const EdgeInsets.only(top: 50),
-                  width: ScreenUtil().setWidth(386.3),
-                  child: Center(
-                    child: TextFormField(
-                      controller: email,
-                      keyboardType: TextInputType.emailAddress,
-                      style: TextStyle( color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 20.sp ),
-                      decoration: InputDecoration(
-                        labelStyle: TextStyle( color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 20.sp ),
-                        labelText: 'Email',
-                        errorText: (_validateEmail) ? 'Email cannot be empty' : null
+                  Container(
+                    margin: const EdgeInsets.only(top: 50),
+                    width: ScreenUtil().setWidth(386.3),
+                    child: Center(
+                      child: TextFormField(
+                        controller: email,
+                        keyboardType: TextInputType.emailAddress,
+                        style: TextStyle( color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 20.sp ),
+                        decoration: InputDecoration(
+                          labelStyle: TextStyle( color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 20.sp ),
+                          labelText: 'Email',
+                          errorText: (_validateEmail) ? 'Email cannot be empty' : null
+                        ),
                       ),
                     ),
                   ),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(top: 20.6),
-                  width: ScreenUtil().setWidth(386.3),
-                  child: TextFormField(
-                    controller: password,
-                    obscureText: _obsecureText,
-                    style: TextStyle( color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 20.sp ),
-                    decoration: InputDecoration(
-                      labelStyle: TextStyle( color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 20.sp ),
-                      labelText: 'Password',
-                      errorText: (_validatePassword) ? 'Password cannot be empty' : null,
-                      suffixIcon: IconButton(
-                        onPressed: () => toogle(),
-                        icon: Icon((_obsecureText) ? Icons.visibility_off : Icons.visibility)
-                      )
+                  Container(
+                    margin: const EdgeInsets.only(top: 20.6),
+                    width: ScreenUtil().setWidth(386.3),
+                    child: TextFormField(
+                      controller: password,
+                      obscureText: _obsecureText,
+                      style: TextStyle( color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 20.sp ),
+                      decoration: InputDecoration(
+                        labelStyle: TextStyle( color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 20.sp ),
+                        labelText: 'Password',
+                        errorText: (_validatePassword) ? 'Password cannot be empty' : null,
+                        suffixIcon: IconButton(
+                          onPressed: () => toogle(),
+                          icon: Icon((_obsecureText) ? Icons.visibility_off : Icons.visibility)
+                        )
+                      ),
                     ),
                   ),
-                ),
 
-                Container(
-                  margin: const EdgeInsets.only(top: 18.8),
-                  width: ScreenUtil().setWidth(386.3),
-                  child: Align(
-                    alignment: Alignment.centerRight,
-                    child: TouchableOpacity(
-                      child: Text('Forgot Password?', style: TextStyle( color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 20.sp ),)
+                  Container(
+                    margin: const EdgeInsets.only(top: 18.8),
+                    width: ScreenUtil().setWidth(386.3),
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: TouchableOpacity(
+                        child: Text('Forgot Password?', style: TextStyle( color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 20.sp ),)
+                      ),
+                    )
+                  ),
+
+                  Container(
+                    margin: const EdgeInsets.only(top: 46),
+                    width: ScreenUtil().setWidth(388.7),
+                    height: ScreenUtil().setHeight(64.7),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)), primary: Color(0xFFF8C503)),
+                      onPressed: () {
+                        if (email.text.isEmpty) {
+                          setState(() {
+                            _validateEmail = true;
+                          });
+                        } else if (password.text.isEmpty) {
+                          setState(() {
+                            _validatePassword = true;
+                          });
+                        } else {
+                          setState(() {
+                            _validateEmail = false;
+                            _validatePassword = false;
+                            loading = true;
+                          });
+                          signIn();
+                        }
+                      },
+                      child: Text('Sign In', style: TextStyle( color: Colors.white, fontFamily: 'DiodrumCyrillicBold', fontSize: 21.3.sp ),)
                     ),
                   )
-                ),
+                ],
+              ),
 
-                Container(
-                  margin: const EdgeInsets.only(top: 46),
-                  width: ScreenUtil().setWidth(388.7),
-                  height: ScreenUtil().setHeight(64.7),
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)), primary: Color(0xFFF8C503)),
-                    onPressed: () {
-                      if (email.text.isEmpty) {
-                        setState(() {
-                          _validateEmail = true;
-                        });
-                      } else if (password.text.isEmpty) {
-                        setState(() {
-                          _validatePassword = true;
-                        });
-                      } else {
-                        setState(() {
-                          _validateEmail = false;
-                          _validatePassword = false;
-                        });
-                        signIn();
-                      }
-                    },
-                    child: Text('Sign In', style: TextStyle( color: Colors.white, fontFamily: 'DiodrumCyrillicBold', fontSize: 21.3.sp ),)
-                  ),
-                )
-              ],
-            ),
+              Container(
+                color: Colors.transparent,
+                child: (loading) ?  Container(
+                  width: ScreenUtil().setWidth(480),
+                  height: ScreenUtil().setHeight(853.3),
+                  color: Color.fromRGBO(0, 0, 0, 0.5),
+                  alignment: Alignment.center,
+                  child: CircularProgressIndicator(
+                    strokeWidth: 4,
+                    color: Color(0xFFF8C503),
+                  )
+                ) : null
+              )
+            ],
           )
         )
       ),
