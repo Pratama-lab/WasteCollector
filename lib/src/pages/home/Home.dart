@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:touchable_opacity/touchable_opacity.dart';
+import 'package:loading_indicator/loading_indicator.dart';
+import 'package:waste_collection/src/api/api_server.dart';
 import 'package:waste_collection/src/api/api_call_get_data.dart';
-import 'package:waste_collection/src/widget/home/home_widget.dart';
+import 'Wallet.dart';
 import 'CollectionReceived.dart';
 import 'History.dart';
 
@@ -26,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: Size(480, 904),
+      designSize: const Size(480, 904),
       builder: () => Scaffold(
         body: SingleChildScrollView(
           child: Align(
@@ -36,12 +38,121 @@ class _HomeScreenState extends State<HomeScreen> {
                 Container(
                   width: ScreenUtil().setWidth(480),
                   height: ScreenUtil().setHeight(280),
-                  decoration: BoxDecoration(image: DecorationImage(image: AssetImage('images/heading.png'), fit: BoxFit.fill)),
+                  decoration: const BoxDecoration(image: DecorationImage(image: AssetImage('images/heading.png'), fit: BoxFit.fill)),
                   child: Align(
                     alignment: Alignment.topCenter,
                     child: Container(
                       width: ScreenUtil().setWidth(421.3),
-                      child: HomeWidget()
+                      child: FutureBuilder(
+                        future: ApiGetHomeData().getData(),
+                        builder: (BuildContext context, AsyncSnapshot snapshot) {
+                          var collector = snapshot.data;
+                          if (snapshot.connectionState == ConnectionState.done) {
+                            return Column(
+                              children: [
+                                Container(
+                                  padding: const EdgeInsets.only(top: 45),
+                                  width: ScreenUtil().setWidth(421),
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: TouchableOpacity(
+                                      onTap: () => print('Profile'),
+                                      child: Row(
+                                        children: [
+                                          ClipRRect(
+                                            borderRadius: BorderRadius.circular(60),
+                                            child: Image.network(
+                                              '${API.API_URL}storage/profile-images/${collector.data.image}',
+                                              width: ScreenUtil().setWidth(60), height: ScreenUtil().setHeight(60),
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                          Container(
+                                            padding: const EdgeInsets.only(left: 11.2),
+                                            width: ScreenUtil().setWidth(360),
+                                            child: Column(
+                                              children: [
+                                                Align(
+                                                  alignment: Alignment.centerLeft,
+                                                  child: Text('${collector?.data.fullName}', style: TextStyle(color: Color(0xFFFFFFFF), fontFamily: 'DiodrumCyrillicBold', fontSize: 19.3.sp),),
+                                                ),
+                                                Align(
+                                                  alignment: Alignment.centerLeft,
+                                                  child: Text('Collector', style: TextStyle(color: Color(0xFFFFFFFF), fontFamily: 'DiodrumCyrillic', fontSize: 19.3.sp),)
+                                                )
+                                              ],
+                                            )
+                                          ),
+                                        ],
+                                      )
+                                    )
+                                  )
+                                ),
+                                Container(
+                                  padding: const EdgeInsets.only(top: 25),
+                                  width: ScreenUtil().setWidth(421.3),
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          width: ScreenUtil().setWidth(221.3),
+                                          child: TouchableOpacity(
+                                            onTap: () async {
+                                              final result = await Navigator.push(context, MaterialPageRoute(builder: (context) => WalletScreen()));
+                                              if (result == 'back') {
+                                                await ApiGetHomeData().getData();
+                                                setState(() {});
+                                              }
+                                            },
+                                            child: Row(
+                                              children: [
+                                                Image.asset('images/home/icon_wallet.png', width: ScreenUtil().setWidth(40), height: ScreenUtil().setHeight(40)),
+                                                Container(
+                                                  padding: const EdgeInsets.only(left: 11.2),
+                                                  child: Column(
+                                                    children: [
+                                                      Text('${format.format(int.parse(collector?.data.balance))}', style: TextStyle(color: Color(0xFFFFFFFF), fontFamily: 'DiodrumCyrillicBold', fontSize: 19.3.sp),)
+                                                    ],
+                                                  )
+                                                ),
+                                              ],
+                                            )
+                                          )
+                                        ),
+                                        Container(
+                                          width: ScreenUtil().setWidth(200),
+                                          child: Align(
+                                            alignment: Alignment.centerRight,
+                                            child: Text('${DateFormat('MMM, d y').format(DateTime.now())}', style: TextStyle(color: Color(0xFFFFFFFF), fontFamily: 'DiodrumCyrillic', fontSize: 19.3.sp),)
+                                          )
+                                        ),
+                                      ],
+                                    )
+                                  )
+                                ),
+                              ],
+                            );
+                          } else {
+                            return Container(
+                              width: ScreenUtil().setWidth(480),
+                              height: ScreenUtil().setHeight(800),
+                              color: Colors.transparent,
+                              child: Center(
+                                child: Container(
+                                  width: ScreenUtil().setWidth(70),
+                                  height: ScreenUtil().setHeight(70),
+                                  child: const LoadingIndicator(
+                                    indicatorType: Indicator.ballSpinFadeLoader,
+                                    colors: [Colors.white],
+                                    backgroundColor: Colors.transparent,
+                                  ),
+                                )
+                              )
+                            );
+                          }
+                        }
+                      )
                     )
                   ),
                 ),
@@ -267,7 +378,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       Container(
                         padding: const EdgeInsets.only(left: 14),
                         child: TouchableOpacity(
-                          onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => HistoryScreen(),)),
+                          onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => HistoryScreen())),
                           child: Container(
                             width: ScreenUtil().setWidth(160.7),
                             height: ScreenUtil().setHeight(120.3),

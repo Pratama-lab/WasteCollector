@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:touchable_opacity/touchable_opacity.dart';
+import 'package:loading_indicator/loading_indicator.dart';
+import 'package:intl/intl.dart';
+import 'package:waste_collection/src/api/api_call_get_data.dart';
 import 'Withdraw.dart';
 
 class WalletScreen extends StatefulWidget {
@@ -9,6 +12,7 @@ class WalletScreen extends StatefulWidget {
 }
 
 class _WalletScreenState extends State<WalletScreen> {
+  final format = NumberFormat.simpleCurrency(locale: 'id_ID');
 
   @override
   void initState() {
@@ -27,14 +31,14 @@ class _WalletScreenState extends State<WalletScreen> {
               Container(
                 width: ScreenUtil().setWidth(480),
                 height: ScreenUtil().setHeight(250),
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Color(0xFFF8C503),
                   boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 2, spreadRadius: 0.0, offset: Offset(0, 1))]
                 ),
                 child: Container(
                   width: ScreenUtil().setWidth(480),
                   height: ScreenUtil().setHeight(250),
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     image: DecorationImage(image: AssetImage('images/home/mask_group_31.png'))
                   ),
                   child: Align(
@@ -50,7 +54,7 @@ class _WalletScreenState extends State<WalletScreen> {
                                 width: ScreenUtil().setWidth(30),
                                 alignment: Alignment.topLeft,
                                 child: TouchableOpacity(
-                                  onTap: () => Navigator.pop(context),
+                                  onTap: () => Navigator.pop(context, 'back'),
                                   child: Image.asset('images/group_2211.png', width: ScreenUtil().setWidth(15.2), height: ScreenUtil().setHeight(24.2),)
                                 ),
                               ),
@@ -81,9 +85,30 @@ class _WalletScreenState extends State<WalletScreen> {
                           )
                         ),
 
-                        Container(
-                          padding: const EdgeInsets.only(top: 12),
-                          child: Text('Rp 150.000', style: TextStyle(color: Colors.white, fontFamily: 'DiodrumCyrillicSemiBold', fontSize: 30.sp),),
+                        FutureBuilder(
+                          future: ApiGetHomeData().getData(),
+                          builder: (BuildContext context, AsyncSnapshot snapshot) {
+                            var saldo = snapshot.data;
+                            if (snapshot.connectionState == ConnectionState.done) {
+                              return Container(
+                                padding: const EdgeInsets.only(top: 12),
+                                child: Text('${format.format(int.parse(saldo?.data.balance))}', style: TextStyle(color: Colors.white, fontFamily: 'DiodrumCyrillicSemiBold', fontSize: 30.sp),),
+                              );
+                            }
+                            return Container(
+                              padding: const EdgeInsets.only(top: 20),
+                              child: Container(
+                                width: ScreenUtil().setWidth(100),
+                                height: ScreenUtil().setHeight(20),
+                                child: const LoadingIndicator(
+                                  strokeWidth: 1,
+                                  indicatorType: Indicator.ballPulse,
+                                  colors: [Colors.white],
+                                  backgroundColor: Colors.transparent
+                                )
+                              ),
+                            );
+                          }
                         )
                       ],
                     )
@@ -98,14 +123,14 @@ class _WalletScreenState extends State<WalletScreen> {
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(10),
-                  boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 2, spreadRadius: 0.0, offset: Offset(0, 1))]
+                  boxShadow: const [BoxShadow(color: Colors.grey, blurRadius: 2, spreadRadius: 0.0, offset: Offset(0, 1))]
                 ),
                 child: Row(
                   children: [
                     Container(
                       width: ScreenUtil().setWidth(200),
                       height: ScreenUtil().setHeight(110),
-                      decoration: BoxDecoration(border: Border(right: BorderSide(width: 0.5, color: Color(0xFFDEDEDE)))),
+                      decoration: const BoxDecoration(border: Border(right: BorderSide(width: 0.5, color: Color(0xFFDEDEDE)))),
                       child: TouchableOpacity(
                         onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => WithdrawScreen(),)),
                         child: Column(
@@ -123,7 +148,7 @@ class _WalletScreenState extends State<WalletScreen> {
                     Container(
                       width: ScreenUtil().setWidth(200),
                       height: ScreenUtil().setHeight(110),
-                      decoration: BoxDecoration(border: Border(left: BorderSide(width: 0.5, color: Color(0xFFDEDEDE)))),
+                      decoration: const BoxDecoration(border: Border(left: BorderSide(width: 0.5, color: Color(0xFFDEDEDE)))),
                       child: TouchableOpacity(
                         onTap: () => print('topup'),
                         child: Column(
@@ -155,7 +180,7 @@ class _WalletScreenState extends State<WalletScreen> {
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10),
-                    boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 2, spreadRadius: 0.0, offset: Offset(0, 1))]
+                    boxShadow: const [BoxShadow(color: Colors.grey, blurRadius: 2, spreadRadius: 0.0, offset: Offset(0, 1))]
                   ),
                   alignment: Alignment.topCenter,
                   child: Container(

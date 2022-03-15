@@ -1,17 +1,95 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:touchable_opacity/touchable_opacity.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:multi_image_picker2/multi_image_picker2.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class DetailCollectionScreen extends StatefulWidget {
+  const DetailCollectionScreen({Key? key}) : super(key: key);
+
   @override
-  _DetailCollectionState createState() => new _DetailCollectionState();
+  _DetailCollectionState createState() => _DetailCollectionState();
 }
 
 class _DetailCollectionState extends State<DetailCollectionScreen> {
+  List<Asset> images = <Asset>[];
 
   @override
   void initState() {
     super.initState();
+  }
+
+  Widget buildGridView() {
+    return GridView.count(
+      shrinkWrap: true,
+      crossAxisCount: 3,
+      children: List.generate(images.length, (index) {
+        Asset asset = images[index];
+        return Container(
+          padding: const EdgeInsets.only(bottom: 10, left: 10),
+          child: Stack(
+            children: [
+              Container(
+                width: ScreenUtil().setWidth(89.4),
+                height: ScreenUtil().setHeight(90.4),
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  border: Border.all(width: 1),
+                  borderRadius: BorderRadius.circular(10)
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: AssetThumb(
+                    asset: asset,
+                    width: 300,
+                    height: 300,
+                  )
+                )
+              )
+            ],
+          ),
+        );
+      })
+    );
+  }
+
+  Future<void> takePhoto() async {
+    List<Asset> resultList = <Asset>[];
+    if (await Permission.camera.request().isGranted && await Permission.storage.request().isGranted) {
+      var status = await Permission.camera.status;
+      var state = await Permission.storage.status;
+      if (status.isGranted && state.isGranted) {
+        print('access granted');
+        try {
+          resultList = await MultiImagePicker.pickImages(
+            maxImages: 300,
+            enableCamera: true,
+            selectedAssets: images,
+            cupertinoOptions: const CupertinoOptions(
+              takePhotoIcon: "chat",
+              doneButtonTitle: "Fatto",
+            ),
+            materialOptions: const MaterialOptions(
+              actionBarColor: "#abcdef",
+              actionBarTitle: "Example App",
+              allViewTitle: "All Photos",
+              useDetailsView: false,
+              selectCircleStrokeColor: "#000000",
+            ),
+          );
+        } catch (e) {
+          print(e.toString());
+        }
+
+        if (!mounted) return;
+        setState(() {
+          images = resultList;
+        });
+      } else {
+        print('access denied');
+      }
+    }
   }
 
   Widget build(BuildContext context) {
@@ -43,7 +121,7 @@ class _DetailCollectionState extends State<DetailCollectionScreen> {
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(16.7),
-                            boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 2, spreadRadius: 0.0, offset: Offset(0, 1))]
+                            boxShadow: const [BoxShadow(color: Colors.grey, blurRadius: 2, spreadRadius: 0.0, offset: Offset(0, 1))]
                           ),
                           child: Column(
                             children: <Widget>[
@@ -97,7 +175,7 @@ class _DetailCollectionState extends State<DetailCollectionScreen> {
 
                               Container(
                                 width: ScreenUtil().setWidth(386.1),
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   border: Border(bottom: BorderSide(color: Color(0xFFDEDEDE)))
                                 ),
                               ),
@@ -124,7 +202,7 @@ class _DetailCollectionState extends State<DetailCollectionScreen> {
                               Container(
                                 padding: const EdgeInsets.only(top: 15),
                                 width: ScreenUtil().setWidth(386.1),
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   border: Border(bottom: BorderSide(color: Color(0xFFDEDEDE)))
                                 ),
                               ),
@@ -159,9 +237,10 @@ class _DetailCollectionState extends State<DetailCollectionScreen> {
                                     padding: const EdgeInsets.only(top: 35),
                                     width: ScreenUtil().setWidth(386.1),
                                     child: Row(
-                                      children: <Widget>[
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
                                         TouchableOpacity(
-                                          onTap: () =>  print('add picture'),
+                                          onTap: () => takePhoto(),
                                           child: Container(
                                             width: ScreenUtil().setWidth(89.4),
                                             height: ScreenUtil().setHeight(90.4),
@@ -175,13 +254,7 @@ class _DetailCollectionState extends State<DetailCollectionScreen> {
                                           )
                                         ),
 
-                                        Container(
-                                          padding: const EdgeInsets.only(left: 20.7),
-                                          child: ClipRRect(
-                                            borderRadius: BorderRadius.circular(10),
-                                            child: Image.asset('images/input/botol.jpg', width: ScreenUtil().setWidth(89.4), height: ScreenUtil().setHeight(90.4)),
-                                          )
-                                        ),
+                                        Expanded(child: buildGridView())
                                       ],
                                     ),
                                   ),
@@ -242,7 +315,7 @@ class _DetailCollectionState extends State<DetailCollectionScreen> {
                                                 decoration: BoxDecoration(
                                                   color: Color(0xFFF8C503),
                                                   borderRadius: BorderRadius.circular(16.7),
-                                                  boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 2, spreadRadius: 0.0, offset: Offset(0, 1))]
+                                                  boxShadow: const [BoxShadow(color: Colors.grey, blurRadius: 2, spreadRadius: 0.0, offset: Offset(0, 1))]
                                                 ),
                                                 child: Align(
                                                   alignment: Alignment.center,
@@ -261,7 +334,7 @@ class _DetailCollectionState extends State<DetailCollectionScreen> {
                               Container(
                                 padding: const EdgeInsets.only(top: 15),
                                 width: ScreenUtil().setWidth(386.1),
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   border: Border(bottom: BorderSide(color: Color(0xFFDEDEDE)))
                                 ),
                               ),
@@ -317,7 +390,7 @@ class _DetailCollectionState extends State<DetailCollectionScreen> {
                             decoration: BoxDecoration(
                               color: Color(0xFFF8C503),
                               borderRadius: BorderRadius.circular(16.7),
-                              boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 2, spreadRadius: 0.0, offset: Offset(0, 1))]
+                              boxShadow: const [BoxShadow(color: Colors.grey, blurRadius: 2, spreadRadius: 0.0, offset: Offset(0, 1))]
                             ),
                             child: Align(
                               alignment: Alignment.center,

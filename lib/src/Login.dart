@@ -4,6 +4,9 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 import 'package:touchable_opacity/touchable_opacity.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 import 'package:waste_collection/src/api/api_server.dart';
 import './navigation/Navigator.dart';
 
@@ -27,22 +30,43 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void signIn() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    final response = await http.post(
-      Uri.parse(API.API_URL+API.login),
-      headers: { 'Content-Type': 'application/json' },
-      body: json.encode({ 'email': email.text, 'password': password.text })
+    WidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp(
+      options: const FirebaseOptions(
+        apiKey: 'AIzaSyAegOfRbMJBr2nLkk6vyNH2W-JhSpRX_Sg',
+        appId: '1:25252535526:android:750cf338056ecf55b16f27',
+        messagingSenderId: '25252535526',
+        projectId: 'waste-collection-d96a1'
+      )
     );
-    Map<String, dynamic> bodyJSON = jsonDecode(response.body);
-    
-    if (bodyJSON['message'] == 'login success') {
-      prefs.setString('token', bodyJSON['data']['token']);
-      setState(() {
-        loading = false;
-      });
-      Navigator.of(context).pushReplacement(new MaterialPageRoute(builder: (context) => new Navigation(),));
-    }
+    FirebaseMessaging.instance.getToken()
+    .then((deviceToken) async {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+
+      final response = await http.post(
+        Uri.parse(API.API_URL+API.login),
+        headers: { 'Content-Type': 'application/json' },
+        body: json.encode({ 'email': email.text, 'password': password.text })
+      );
+      Map<String, dynamic> bodyJSON = jsonDecode(response.body);
+      
+      if (bodyJSON['message'] == 'login success') {
+        prefs.setString('token', bodyJSON['data']['token']);
+
+        final resp = await http.put(
+          Uri.parse(API.API_URL+API.updateDeviceToken),
+          headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ${bodyJSON['data']['token']}' },
+          body: json.encode({ 'device_token': deviceToken })
+        );
+        Map<String, dynamic> tokenJSON = jsonDecode(resp.body);
+        if (tokenJSON['message'] == 'data has been updated') {
+          setState(() {
+            loading = false;
+          });
+          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => Navigation()));
+        }
+      }
+    });
   }
 
   void toogle() {
@@ -155,9 +179,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: ScreenUtil().setHeight(853.3),
                   color: Color.fromRGBO(0, 0, 0, 0.5),
                   alignment: Alignment.center,
-                  child: CircularProgressIndicator(
-                    strokeWidth: 4,
-                    color: Color(0xFFF8C503),
+                  child: Container(
+                    width: ScreenUtil().setWidth(100),
+                    height: ScreenUtil().setHeight(100),
+                    child: const LoadingIndicator(
+                      indicatorType: Indicator.lineSpinFadeLoader,
+                      colors: [Color(0xFFF8C503)],
+                      backgroundColor: Colors.transparent,
+                    )
                   )
                 ) : null
               )

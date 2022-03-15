@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:touchable_opacity/touchable_opacity.dart';
+import 'WhatHappen.dart';
 
 class HelpCentreScreen extends StatefulWidget {
   @override
@@ -25,7 +26,7 @@ class _HelpCentreState extends State<HelpCentreScreen> {
             width: ScreenUtil().setWidth(480),
             height: ScreenUtil().setHeight(260),
             alignment: Alignment.topCenter,
-            decoration: BoxDecoration(image: DecorationImage(image: AssetImage('images/profile/group_2239.png'), fit: BoxFit.cover)),
+            decoration: const BoxDecoration(image: DecorationImage(image: AssetImage('images/profile/group_2239.png'), fit: BoxFit.cover)),
             child: Column(
               children: [
                 Container(
@@ -237,49 +238,52 @@ class _HelpCentreState extends State<HelpCentreScreen> {
                   width: ScreenUtil().setWidth(430),
                   child: Text('Need Help With Your Recent Activity?', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillicBold', fontSize: 20.sp),),
                 ),
-                Container(
-                  width: ScreenUtil().setWidth(430),
-                  alignment: Alignment.topCenter,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                    boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 2, spreadRadius: 0.0, offset: Offset(0, 1))]
-                  ),
-                  child: Column(
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.only(top: 17.7, bottom: 8.5),
-                        width: ScreenUtil().setWidth(396),
-                        decoration: BoxDecoration(border: Border(bottom: BorderSide(width: 1.0, color: Color(0xFFDEDEDE)))),
-                        child: Row(
-                          children: [
-                            Image.asset('images/profile/recycle_icon.png', width: ScreenUtil().setWidth(34), height: ScreenUtil().setHeight(33),),
-                            Container(
-                              padding: const EdgeInsets.only(left: 13),
-                              child: Text('Collection Successfully', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillicBold', fontSize: 18.sp),),
-                            )
-                          ],
+                TouchableOpacity(
+                  onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const WhatHappen())),
+                  child: Container(
+                    width: ScreenUtil().setWidth(430),
+                    alignment: Alignment.topCenter,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 2, spreadRadius: 0.0, offset: Offset(0, 1))]
+                    ),
+                    child: Column(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.only(top: 17.7, bottom: 8.5),
+                          width: ScreenUtil().setWidth(396),
+                          decoration: const BoxDecoration(border: Border(bottom: BorderSide(width: 1.0, color: Color(0xFFDEDEDE)))),
+                          child: Row(
+                            children: [
+                              Image.asset('images/profile/recycle_icon.png', width: ScreenUtil().setWidth(34), height: ScreenUtil().setHeight(33),),
+                              Container(
+                                padding: const EdgeInsets.only(left: 13),
+                                child: Text('Collection Successfully', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillicBold', fontSize: 18.sp),),
+                              )
+                            ],
+                          ),
                         ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.only(top: 11, bottom: 16.7),
-                        width: ScreenUtil().setWidth(396),
-                        child: Row(
-                          children: [
-                            Container(
-                              width: ScreenUtil().setWidth(198),
-                              child: Text('09:30 | 11 Jul 2021', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp),),
-                            ),
-                            Container(
-                              width: ScreenUtil().setWidth(198),
-                              alignment: Alignment.centerRight,
-                              child: Text('Collection Nr.: 37432', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp),),
-                            )
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
+                        Container(
+                          padding: const EdgeInsets.only(top: 11, bottom: 16.7),
+                          width: ScreenUtil().setWidth(396),
+                          child: Row(
+                            children: [
+                              Container(
+                                width: ScreenUtil().setWidth(198),
+                                child: Text('09:30 | 11 Jul 2021', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp),),
+                              ),
+                              Container(
+                                width: ScreenUtil().setWidth(198),
+                                alignment: Alignment.centerRight,
+                                child: Text('Collection Nr.: 37432', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp),),
+                              )
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  )
                 ),
 
                 Container(

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:touchable_opacity/touchable_opacity.dart';
+import 'package:loading_indicator/loading_indicator.dart';
+import 'package:intl/intl.dart';
+import 'package:waste_collection/src/api/api_call_get_data.dart';
 import 'WithdrawConfirm.dart';
 import 'AddBankAccount.dart';
 
@@ -54,7 +56,7 @@ class _WithdrawState extends State<WithdrawScreen> {
           backgroundColor: Color(0xFFF8C503),
           leading: TouchableOpacity(
             onTap: () => Navigator.pop(context),
-            child: Icon(Icons.arrow_back_ios_new_rounded, size: 25)
+            child: const Icon(Icons.arrow_back_ios_new_rounded, size: 25)
           )
         ),
         body: SingleChildScrollView(
@@ -75,9 +77,30 @@ class _WithdrawState extends State<WithdrawScreen> {
                     ],
                   ),
                 ),
-                Container(
-                  padding: const EdgeInsets.only(top: 15),
-                  child: Text('Rp 150.000', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillicSemiBold', fontSize: 30.sp),),
+                FutureBuilder(
+                  future: ApiGetHomeData().getData(),
+                  builder: (BuildContext context, AsyncSnapshot snapshot) {
+                    var saldo = snapshot.data;
+                    if (snapshot.connectionState == ConnectionState.done) {
+                      return Container(
+                        padding: const EdgeInsets.only(top: 15),
+                        child: Text('Rp 150.000', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillicSemiBold', fontSize: 30.sp),),
+                      );
+                    }
+                    return Container(
+                      padding: const EdgeInsets.only(top: 15),
+                      child: Container(
+                        width: ScreenUtil().setWidth(100),
+                        height: ScreenUtil().setHeight(20),
+                        child: const LoadingIndicator(
+                          strokeWidth: 1,
+                          indicatorType: Indicator.ballPulse,
+                          colors: [Color(0xFFF8C503)],
+                          backgroundColor: Colors.transparent,
+                        ),
+                      ),
+                    );
+                  }
                 ),
                 Container(
                   padding: const EdgeInsets.only(top: 12),
@@ -114,7 +137,7 @@ class _WithdrawState extends State<WithdrawScreen> {
                 Container(
                   padding: const EdgeInsets.only(top: 20),
                   width: ScreenUtil().setWidth(430),
-                  decoration: BoxDecoration(border: Border(bottom: BorderSide(width: 1.0, color: Color(0xFFDEDEDE)))),
+                  decoration: const BoxDecoration(border: Border(bottom: BorderSide(width: 1.0, color: Color(0xFFDEDEDE)))),
                 ),
 
                 Container(
@@ -149,7 +172,7 @@ class _WithdrawState extends State<WithdrawScreen> {
                 Container(
                   padding: const EdgeInsets.only(top: 12),
                   width: ScreenUtil().setWidth(430),
-                  decoration: BoxDecoration(border: Border(bottom: BorderSide(width: 1.0, color: Color(0xFFDEDEDE)))),
+                  decoration: const BoxDecoration(border: Border(bottom: BorderSide(width: 1.0, color: Color(0xFFDEDEDE)))),
                 ),
                 Container(
                   padding: const EdgeInsets.only(top: 17),
@@ -186,7 +209,7 @@ class _WithdrawState extends State<WithdrawScreen> {
                       decoration: BoxDecoration(
                         color: Color(0xFFF8C503),
                         borderRadius: BorderRadius.circular(16.7),
-                        boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 2, spreadRadius: 0.0, offset: Offset(0, 1))]
+                        boxShadow: const [BoxShadow(color: Colors.grey, blurRadius: 2, spreadRadius: 0.0, offset: Offset(0, 1))]
                       ),
                       child: Center(
                         child: Text('Continue', style: TextStyle(color: Colors.white, fontFamily: 'DiodrumCyrillicBold', fontSize: 22.sp),),

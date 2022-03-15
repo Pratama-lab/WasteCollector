@@ -13,7 +13,7 @@ class Navigation extends StatefulWidget {
 
 class _NavigationState extends State<Navigation> {
   int _bottomNavIndex = 0;
-  List<Widget> container = [ const HomeScreen(), InputScreen(), MessageScreen(), const ProfileScreen()];
+  List<Widget> container = [ const HomeScreen(), InputScreen(), MessageScreen(), ProfileScreen()];
 
   @override
   Widget build(BuildContext context) {

@@ -3,16 +3,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
-import 'package:mime/mime.dart';
 import 'package:touchable_opacity/touchable_opacity.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:waste_collection/src/api/api_call_get_data.dart';
-import 'package:waste_collection/src/api/api_server.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_login_facebook/flutter_login_facebook.dart';
+import 'package:loading_indicator/loading_indicator.dart';
+import 'package:waste_collection/src/api/api_call_get_data.dart';
+import 'package:waste_collection/src/api/api_server.dart';
 
 GoogleSignIn _googleSignIn = GoogleSignIn(
   clientId: '25252535526-4gpd2tsihutsru9sd2rujsp0gd65u6mn.apps.googleusercontent.com'
@@ -59,9 +59,7 @@ class _EditProfileState extends State<EditProfileScreen> {
           SharedPreferences prefs = await SharedPreferences.getInstance();
           var token = prefs.getString('token');
 
-          String filename = photo.path.split('/').last;
           String typeImage = photo.name.split('.').last;
-          final mimeTypeData = lookupMimeType(photo.path, headerBytes: [0xFF, 0xD8]);
           final request = await http.MultipartRequest('POST', Uri.parse(API.API_URL+API.updateProfileImage));
           final file = await http.MultipartFile.fromPath('image', photo.path, contentType: MediaType('image', typeImage));
           request.files.add(file);
@@ -96,7 +94,7 @@ class _EditProfileState extends State<EditProfileScreen> {
     Map<String, dynamic> bodyJSON = jsonDecode(response.body);
     if (bodyJSON['message'] == 'data has been updated') {
       setState(() => loading = false);
-      Navigator.pop(context, true);
+      Navigator.pop(context, 'back');
     }
   }
 
@@ -197,7 +195,7 @@ class _EditProfileState extends State<EditProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: Size(480, 904),
+      designSize: const Size(480, 904),
       builder: () => Scaffold(
         resizeToAvoidBottomInset: true,
         appBar: AppBar(
@@ -205,7 +203,7 @@ class _EditProfileState extends State<EditProfileScreen> {
           centerTitle: true,
           backgroundColor: Color(0xFFF8C503),
           leading: TouchableOpacity(
-            onTap: () => Navigator.pop(context),
+            onTap: () => Navigator.pop(context, 'back'),
             child: Icon(Icons.arrow_back_ios_new_rounded, size: 25)
           ),
           actions: [
@@ -229,22 +227,13 @@ class _EditProfileState extends State<EditProfileScreen> {
                     padding: const EdgeInsets.only(top: 33.5),
                     child: Stack(
                       children: [
-                        FutureBuilder(
-                          future: ApiGetProfileData().getData(),
-                          builder: (BuildContext context, AsyncSnapshot snapshot) {
-                            var editProfile = snapshot.data;
-                            if (snapshot.connectionState == ConnectionState.done) {
-                              return ClipRRect(
-                                borderRadius: BorderRadius.circular(102),
-                                child: Image.network(
-                                  '${API.API_URL}storage/profile-images/${editProfile?.data.image}',
-                                  width: ScreenUtil().setWidth(102), height: ScreenUtil().setHeight(102),
-                                  fit: BoxFit.cover,
-                                ),
-                              );
-                            }
-                            return const CircularProgressIndicator(strokeWidth: 4, color: Color(0xFFF8C503),);
-                          }
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(102),
+                          child: Image.network(
+                            '${widget.image}',
+                            width: ScreenUtil().setWidth(102), height: ScreenUtil().setHeight(102),
+                            fit: BoxFit.cover,
+                          ),
                         ),
                         Positioned(
                           bottom: 0,
@@ -381,7 +370,11 @@ class _EditProfileState extends State<EditProfileScreen> {
                             return Container(
                               width: ScreenUtil().setWidth(40),
                               height: ScreenUtil().setHeight(40),
-                              child: const CircularProgressIndicator(strokeWidth: 4, color: Color(0xFFF8C503),)
+                              child: const LoadingIndicator(
+                                indicatorType: Indicator.ballSpinFadeLoader,
+                                colors: [Color(0xFFF8C503)],
+                                backgroundColor: Colors.transparent,
+                              )
                             );
                           }
                         )
@@ -444,7 +437,11 @@ class _EditProfileState extends State<EditProfileScreen> {
                               return Container(
                                 width: ScreenUtil().setWidth(40),
                                 height: ScreenUtil().setHeight(40),
-                                child: const CircularProgressIndicator(strokeWidth: 4, color: Color(0xFFF8C503),)
+                                child: const LoadingIndicator(
+                                  indicatorType: Indicator.ballSpinFadeLoader,
+                                  colors: [Color(0xFFF8C503)],
+                                  backgroundColor: Colors.transparent,
+                                )
                               );
                             }
                           }
@@ -462,9 +459,14 @@ class _EditProfileState extends State<EditProfileScreen> {
                   height: ScreenUtil().setHeight(853),
                   color: Color.fromRGBO(0, 0, 0, 0.5),
                   alignment: Alignment.center,
-                  child: const CircularProgressIndicator(
-                    strokeWidth: 4,
-                    color: Color(0xFFF8C503),
+                  child: Container(
+                    width: ScreenUtil().setWidth(100),
+                    height: ScreenUtil().setHeight(105),
+                    child: const LoadingIndicator(
+                      indicatorType: Indicator.lineSpinFadeLoader,
+                      colors: [Color(0xFFF8C503)],
+                      backgroundColor: Colors.transparent,
+                    )
                   )
                 ) : null
               )
