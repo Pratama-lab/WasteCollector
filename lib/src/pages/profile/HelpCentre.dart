@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, use_key_in_widget_constructors, sized_box_for_whitespace, unnecessary_const, duplicate_ignore, prefer_const_literals_to_create_immutables
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:touchable_opacity/touchable_opacity.dart';
@@ -18,10 +20,10 @@ class _HelpCentreState extends State<HelpCentreScreen> {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: Size(480, 904),
+      designSize: const Size(480, 904),
       builder: () => Scaffold(
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(260),
+          preferredSize: const Size.fromHeight(260),
           child: Container(
             width: ScreenUtil().setWidth(480),
             height: ScreenUtil().setHeight(260),
@@ -105,7 +107,7 @@ class _HelpCentreState extends State<HelpCentreScreen> {
                     width: ScreenUtil().setWidth(430),
                     height: ScreenUtil().setHeight(60),
                     decoration: BoxDecoration(
-                      color: Color(0xFFDEDEDE),
+                      color: const Color(0xFFDEDEDE),
                       borderRadius: BorderRadius.circular(16.7)
                     ),
                     child: Row(
@@ -119,10 +121,10 @@ class _HelpCentreState extends State<HelpCentreScreen> {
                           padding: const EdgeInsets.only(left: 10.5),
                           width: ScreenUtil().setWidth(390),
                           child: TextFormField(
-                            style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp),
+                            style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp),
                             decoration: InputDecoration(
                               hintText: 'Search help',
-                              hintStyle: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp),
+                              hintStyle: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp),
                               border: InputBorder.none
                             ),
                           ),
@@ -135,7 +137,7 @@ class _HelpCentreState extends State<HelpCentreScreen> {
                 Container(
                   padding: const EdgeInsets.only(top: 29, bottom: 24),
                   width: ScreenUtil().setWidth(430),
-                  child: Text('All Topics', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillicBold', fontSize: 20.sp),),
+                  child: Text('All Topics', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillicBold', fontSize: 20.sp),),
                 ),
                 Container(
                   width: ScreenUtil().setWidth(430),
@@ -144,7 +146,7 @@ class _HelpCentreState extends State<HelpCentreScreen> {
                       children: [
                         Container(
                           width: ScreenUtil().setWidth(400),
-                          child: Text('Frequently Asked Questions', style: TextStyle(color: Color(0xFF707070), fontSize: 18.sp),),
+                          child: Text('Frequently Asked Questions', style: TextStyle(color: const Color(0xFF707070), fontSize: 18.sp),),
                         ),
                         Container(
                           width: ScreenUtil().setWidth(30),
@@ -158,7 +160,7 @@ class _HelpCentreState extends State<HelpCentreScreen> {
                 Container(
                   padding: const EdgeInsets.only(bottom: 18),
                   width: ScreenUtil().setWidth(430),
-                  decoration: BoxDecoration(border: Border(bottom: BorderSide(width: 1.0, color: Color(0xFFDEDEDE)))),
+                  decoration: const BoxDecoration(border: Border(bottom: BorderSide(width: 1.0, color: Color(0xFFDEDEDE)))),
                 ),
                 Container(
                   padding: const EdgeInsets.only(top: 18),
@@ -168,7 +170,7 @@ class _HelpCentreState extends State<HelpCentreScreen> {
                       children: [
                         Container(
                           width: ScreenUtil().setWidth(400),
-                          child: Text('Payment Issue', style: TextStyle(color: Color(0xFF707070), fontSize: 18.sp),),
+                          child: Text('Payment Issue', style: TextStyle(color: const Color(0xFF707070), fontSize: 18.sp),),
                         ),
                         Container(
                           width: ScreenUtil().setWidth(30),
@@ -182,7 +184,8 @@ class _HelpCentreState extends State<HelpCentreScreen> {
                 Container(
                   padding: const EdgeInsets.only(bottom: 18),
                   width: ScreenUtil().setWidth(430),
-                  decoration: BoxDecoration(border: Border(bottom: BorderSide(width: 1.0, color: Color(0xFFDEDEDE)))),
+                  // ignore: unnecessary_const
+                  decoration: const BoxDecoration(border: const Border(bottom: BorderSide(width: 1.0, color: const Color(0xFFDEDEDE)))),
                 ),
                 Container(
                   padding: const EdgeInsets.only(top: 18),
@@ -192,7 +195,7 @@ class _HelpCentreState extends State<HelpCentreScreen> {
                       children: [
                         Container(
                           width: ScreenUtil().setWidth(400),
-                          child: Text('About My Account', style: TextStyle(color: Color(0xFF707070), fontSize: 18.sp),),
+                          child: Text('About My Account', style: TextStyle(color: const Color(0xFF707070), fontSize: 18.sp),),
                         ),
                         Container(
                           width: ScreenUtil().setWidth(30),
@@ -206,7 +209,7 @@ class _HelpCentreState extends State<HelpCentreScreen> {
                 Container(
                   padding: const EdgeInsets.only(bottom: 18),
                   width: ScreenUtil().setWidth(430),
-                  decoration: BoxDecoration(border: Border(bottom: BorderSide(width: 1.0, color: Color(0xFFDEDEDE)))),
+                  decoration: const BoxDecoration(border: Border(bottom: BorderSide(width: 1.0, color: Color(0xFFDEDEDE)))),
                 ),
                 Container(
                   padding: const EdgeInsets.only(top: 18),
@@ -216,7 +219,7 @@ class _HelpCentreState extends State<HelpCentreScreen> {
                       children: [
                         Container(
                           width: ScreenUtil().setWidth(400),
-                          child: Text('App Issue', style: TextStyle(color: Color(0xFF707070), fontSize: 18.sp),),
+                          child: Text('App Issue', style: TextStyle(color: const Color(0xFF707070), fontSize: 18.sp),),
                         ),
                         Container(
                           width: ScreenUtil().setWidth(30),
@@ -230,13 +233,13 @@ class _HelpCentreState extends State<HelpCentreScreen> {
                 Container(
                   padding: const EdgeInsets.only(bottom: 18),
                   width: ScreenUtil().setWidth(430),
-                  decoration: BoxDecoration(border: Border(bottom: BorderSide(width: 1.0, color: Color(0xFFDEDEDE)))),
+                  decoration: const BoxDecoration(border: Border(bottom: const BorderSide(width: 1.0, color: const Color(0xFFDEDEDE)))),
                 ),
 
                 Container(
                   padding: const EdgeInsets.only(top: 24, bottom: 23),
                   width: ScreenUtil().setWidth(430),
-                  child: Text('Need Help With Your Recent Activity?', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillicBold', fontSize: 20.sp),),
+                  child: Text('Need Help With Your Recent Activity?', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillicBold', fontSize: 20.sp),),
                 ),
                 TouchableOpacity(
                   onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const WhatHappen())),
@@ -246,7 +249,7 @@ class _HelpCentreState extends State<HelpCentreScreen> {
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(10),
-                      boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 2, spreadRadius: 0.0, offset: Offset(0, 1))]
+                      boxShadow: [const BoxShadow(color: Colors.grey, blurRadius: 2, spreadRadius: 0.0, offset: Offset(0, 1))]
                     ),
                     child: Column(
                       children: [
@@ -259,7 +262,7 @@ class _HelpCentreState extends State<HelpCentreScreen> {
                               Image.asset('images/profile/recycle_icon.png', width: ScreenUtil().setWidth(34), height: ScreenUtil().setHeight(33),),
                               Container(
                                 padding: const EdgeInsets.only(left: 13),
-                                child: Text('Collection Successfully', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillicBold', fontSize: 18.sp),),
+                                child: Text('Collection Successfully', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillicBold', fontSize: 18.sp),),
                               )
                             ],
                           ),
@@ -271,12 +274,12 @@ class _HelpCentreState extends State<HelpCentreScreen> {
                             children: [
                               Container(
                                 width: ScreenUtil().setWidth(198),
-                                child: Text('09:30 | 11 Jul 2021', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp),),
+                                child: Text('09:30 | 11 Jul 2021', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp),),
                               ),
                               Container(
                                 width: ScreenUtil().setWidth(198),
                                 alignment: Alignment.centerRight,
-                                child: Text('Collection Nr.: 37432', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp),),
+                                child: Text('Collection Nr.: 37432', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp),),
                               )
                             ],
                           ),
@@ -289,12 +292,12 @@ class _HelpCentreState extends State<HelpCentreScreen> {
                 Container(
                   padding: const EdgeInsets.only(top: 31, bottom: 23),
                   width: ScreenUtil().setWidth(430),
-                  child: Text('Find More Help', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillicBold', fontSize: 20.sp),),
+                  child: Text('Find More Help', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillicBold', fontSize: 20.sp),),
                 ),
                 Container(
                   width: ScreenUtil().setWidth(430),
                   height: ScreenUtil().setHeight(121),
-                  decoration: BoxDecoration(image: DecorationImage(image: AssetImage('images/profile/group_2237.png'), fit: BoxFit.fill)),
+                  decoration: const BoxDecoration(image: const DecorationImage(image: const AssetImage('images/profile/group_2237.png'), fit: BoxFit.fill)),
                   child: Row(
                     children: [
                       Container(
@@ -328,7 +331,7 @@ class _HelpCentreState extends State<HelpCentreScreen> {
                                     borderRadius: BorderRadius.circular(10)
                                   ),
                                   child: Center(
-                                    child: Text('Chat With Us', style: TextStyle(color: Color(0xFF263238), fontFamily: 'DiodrumCyrillicBold', fontSize: 18.sp),),
+                                    child: Text('Chat With Us', style: TextStyle(color: const Color(0xFF263238), fontFamily: 'DiodrumCyrillicBold', fontSize: 18.sp),),
                                   ),
                                 )
                               ),
@@ -344,8 +347,8 @@ class _HelpCentreState extends State<HelpCentreScreen> {
                   width: ScreenUtil().setWidth(165),
                   child: Row(
                     children: [
-                      Text('Or you can', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp)),
-                      Text(' MAIL US', style: TextStyle(color: Color(0xFFF8C503), fontFamily: 'DiodrumCyrillicSemiBold', fontSize: 18.sp)),
+                      Text('Or you can', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp)),
+                      Text(' MAIL US', style: TextStyle(color: const Color(0xFFF8C503), fontFamily: 'DiodrumCyrillicSemiBold', fontSize: 18.sp)),
                     ]
                   ),
                 )

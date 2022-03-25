@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, unnecessary_import, use_key_in_widget_constructors, unnecessary_const, sized_box_for_whitespace, prefer_const_literals_to_create_immutables, avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,7 +20,7 @@ class _ShareFeedbackState extends State<ShareFeedbackScreen> {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: Size(480, 904),
+      designSize: const Size(480, 904),
       builder: () => Scaffold(
         body: SingleChildScrollView(
           child: Align(
@@ -29,7 +31,7 @@ class _ShareFeedbackState extends State<ShareFeedbackScreen> {
                   width: ScreenUtil().setWidth(480),
                   height: ScreenUtil().setHeight(280),
                   alignment: Alignment.topCenter,
-                  decoration: BoxDecoration(image: DecorationImage(image: AssetImage('images/profile/mask_group_30.png'), fit: BoxFit.cover)),
+                  decoration: const BoxDecoration(image: const DecorationImage(image: AssetImage('images/profile/mask_group_30.png'), fit: BoxFit.cover)),
                   child: Column(
                     children: [
                       Container(
@@ -73,7 +75,7 @@ class _ShareFeedbackState extends State<ShareFeedbackScreen> {
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10),
-                    border: Border.all(width: 3.0, color: Color(0xFF2AAE1B))
+                    border: Border.all(width: 3.0, color: const Color(0xFF2AAE1B))
                   ),
                   child: Center(
                     child: Image.asset('images/profile/volunteering_bro_1.png', width: ScreenUtil().setWidth(150), height: ScreenUtil().setHeight(150),),
@@ -81,24 +83,24 @@ class _ShareFeedbackState extends State<ShareFeedbackScreen> {
                 ),
                 Container(
                   transform: Matrix4.translationValues(0.0, -60.0, 0.0),
-                  child: Text('Waste Collector', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillicSemiBold', fontSize: 18.sp),),
+                  child: Text('Waste Collector', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillicSemiBold', fontSize: 18.sp),),
                 ),
                 Container(
                   transform: Matrix4.translationValues(0.0, -40.0, 0.0),
                   width: ScreenUtil().setWidth(400),
                   alignment: Alignment.topCenter,
                   decoration: BoxDecoration(
-                    color: Color(0xFFDEDEDE),
+                    color: const Color(0xFFDEDEDE),
                     borderRadius: BorderRadius.circular(16.7)
                   ),
                   child: Container(
                     width: ScreenUtil().setWidth(380),
                     child: TextFormField(
-                      style: TextStyle( color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp ),
+                      style: TextStyle( color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp ),
                       keyboardType: TextInputType.multiline,
                       maxLines: 6,
                       decoration: InputDecoration(
-                        hintStyle: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp),
+                        hintStyle: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp),
                         hintText: 'Tell us your thought',
                         border: InputBorder.none
                       ),
@@ -114,9 +116,9 @@ class _ShareFeedbackState extends State<ShareFeedbackScreen> {
                       width: ScreenUtil().setWidth(380),
                       height: ScreenUtil().setHeight(70),
                       decoration: BoxDecoration(
-                        color: Color(0xFFF8C503),
+                        color: const Color(0xFFF8C503),
                         borderRadius: BorderRadius.circular(16.7),
-                        boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 2, spreadRadius: 0.0, offset: Offset(0, 1))]
+                        boxShadow: [const BoxShadow(color: Colors.grey, blurRadius: 2, spreadRadius: 0.0, offset: Offset(0, 1))]
                       ),
                       child: Center(
                         child: Text('Send Feedback', style: TextStyle(color: Colors.white, fontFamily: 'DiodrumCyrillicBold', fontSize: 21.sp))

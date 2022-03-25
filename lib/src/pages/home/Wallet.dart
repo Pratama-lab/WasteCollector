@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, use_key_in_widget_constructors, unnecessary_string_interpolations, sized_box_for_whitespace, avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:touchable_opacity/touchable_opacity.dart';
@@ -5,6 +7,7 @@ import 'package:loading_indicator/loading_indicator.dart';
 import 'package:intl/intl.dart';
 import 'package:waste_collection/src/api/api_call_get_data.dart';
 import 'Withdraw.dart';
+import 'TopUp.dart';
 
 class WalletScreen extends StatefulWidget {
   @override
@@ -22,7 +25,7 @@ class _WalletScreenState extends State<WalletScreen> {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: Size(480, 904),
+      designSize: const Size(480, 904),
       builder: () => Scaffold(
         body: Align(
           alignment: Alignment.topCenter,
@@ -139,7 +142,7 @@ class _WalletScreenState extends State<WalletScreen> {
                             Image.asset('images/home/group_885.png', width: ScreenUtil().setWidth(40), height: ScreenUtil().setHeight(40),),
                             Container(
                               padding: const EdgeInsets.only(top: 6),
-                              child: Text('Withdraw', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 17.sp),),
+                              child: Text('Withdraw', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 17.sp),),
                             )
                           ],
                         ),
@@ -150,14 +153,20 @@ class _WalletScreenState extends State<WalletScreen> {
                       height: ScreenUtil().setHeight(110),
                       decoration: const BoxDecoration(border: Border(left: BorderSide(width: 0.5, color: Color(0xFFDEDEDE)))),
                       child: TouchableOpacity(
-                        onTap: () => print('topup'),
+                        onTap: () async {
+                          var result = await Navigator.push(context, MaterialPageRoute(builder: (context) => TopUp()));
+                          if (result == 'back') {
+                            await ApiGetHomeData().getData();
+                            setState(() {});
+                          }
+                        },
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Image.asset('images/home/group_886.png', width: ScreenUtil().setWidth(40), height: ScreenUtil().setHeight(40),),
                             Container(
                               padding: const EdgeInsets.only(top: 6),
-                              child: Text('Top Up', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 17.sp),),
+                              child: Text('Top Up', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 17.sp),),
                             )
                           ],
                         ),
@@ -169,7 +178,7 @@ class _WalletScreenState extends State<WalletScreen> {
 
               Container(
                 width: ScreenUtil().setWidth(400),
-                child: Text('History Transaction', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillicMedium', fontSize: 18.sp),),
+                child: Text('History Transaction', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillicMedium', fontSize: 18.sp),),
               ),
               Container(
                 padding: const EdgeInsets.only(top: 15),
@@ -200,17 +209,17 @@ class _WalletScreenState extends State<WalletScreen> {
                                   children: [
                                     Align(
                                       alignment: Alignment.topLeft,
-                                      child: Text('Withdraw', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 16.sp),),
+                                      child: Text('Withdraw', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 16.sp),),
                                     ),
                                     Container(
                                       padding: const EdgeInsets.only(top: 3.3),
                                       alignment: Alignment.topLeft,
-                                      child: Text('To BCA', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 16.sp),),
+                                      child: Text('To BCA', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 16.sp),),
                                     ),
                                     Container(
                                       padding: const EdgeInsets.only(top: 3.3),
                                       alignment: Alignment.topLeft,
-                                      child: Text('Rp 300.000', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 16.sp),),
+                                      child: Text('Rp 300.000', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 16.sp),),
                                     )
                                   ],
                                 )
@@ -218,7 +227,7 @@ class _WalletScreenState extends State<WalletScreen> {
                               Container(
                                 width: ScreenUtil().setWidth(120),
                                 alignment: Alignment.topRight,
-                                child: Text('Yesterday', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 16.sp),)
+                                child: Text('Yesterday', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 16.sp),)
                               )
                             ],
                           ),

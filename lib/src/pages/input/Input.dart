@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, use_key_in_widget_constructors, sized_box_for_whitespace
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -36,14 +38,14 @@ class _InputScreenState extends State<InputScreen> {
     Map<String, dynamic> bodyJSON = jsonDecode(response.body);
     if (bodyJSON['message'] == 'data found') {
       setState(() => loading = false);
-      Navigator.of(context).push(MaterialPageRoute(builder: (context) => DetailCollectionScreen()));
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) => const DetailCollectionScreen()));
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: Size(480, 904),
+      designSize: const Size(480, 904),
       builder: () => Scaffold(
         body: SingleChildScrollView(
           child: Align(
@@ -75,7 +77,7 @@ class _InputScreenState extends State<InputScreen> {
                     Container(
                       transform: Matrix4.translationValues(0.0, -30.0, 0.0),
                       child: Center(
-                        child: Text('Input Collection Number', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillicBold', fontSize: 24.sp),),
+                        child: Text('Input Collection Number', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillicBold', fontSize: 24.sp),),
                       ),
                     ),
                     Container(
@@ -137,7 +139,7 @@ class _InputScreenState extends State<InputScreen> {
                         child: Container(
                           height: ScreenUtil().setHeight(70),
                           decoration: BoxDecoration(
-                            color: Color(0xFFF8C503),
+                            color: const Color(0xFFF8C503),
                             borderRadius: BorderRadius.circular(16.7)
                           ),
                           child: Center(
@@ -154,7 +156,7 @@ class _InputScreenState extends State<InputScreen> {
                   child: (loading) ? Container(
                     width: ScreenUtil().setWidth(480),
                     height: ScreenUtil().setHeight(904),
-                    color: Color.fromRGBO(0, 0, 0, 0.5),
+                    color: const Color.fromRGBO(0, 0, 0, 0.5),
                     alignment: Alignment.center,
                     child: Container(
                       width: ScreenUtil().setWidth(100),

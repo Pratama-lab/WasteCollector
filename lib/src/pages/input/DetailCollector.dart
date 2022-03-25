@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, unused_import, avoid_print, sized_box_for_whitespace, avoid_unnecessary_containers
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:touchable_opacity/touchable_opacity.dart';
@@ -92,17 +94,18 @@ class _DetailCollectionState extends State<DetailCollectionScreen> {
     }
   }
 
+  @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: Size(480, 904),
+      designSize: const Size(480, 904),
       builder: () => Scaffold(
         appBar: AppBar(
           title: Text('Input Collection', style: TextStyle(color: Colors.white, fontFamily: 'DiodrumCyrillicBold', fontSize: 24.sp),),
           centerTitle: true,
-          backgroundColor: Color(0xFFF8C503),
+          backgroundColor: const Color(0xFFF8C503),
           leading: TouchableOpacity(
             onTap: () => Navigator.pop(context),
-            child: Icon(Icons.arrow_back_ios_new_rounded, size: 25)
+            child: const Icon(Icons.arrow_back_ios_new_rounded, size: 25)
           ),
         ),
         body: SingleChildScrollView(
@@ -134,7 +137,7 @@ class _DetailCollectionState extends State<DetailCollectionScreen> {
                                       children: <Widget>[
                                         Container(
                                           width: ScreenUtil().setWidth(180),
-                                          child: Text('Sunaryo', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillicBold', fontSize: 21.sp),)
+                                          child: Text('Sunaryo', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillicBold', fontSize: 21.sp),)
                                         ),
                                         Container(
                                           padding: const EdgeInsets.only(top: 5),
@@ -142,7 +145,7 @@ class _DetailCollectionState extends State<DetailCollectionScreen> {
                                           child: Row(
                                             children: <Widget>[
                                               Image.asset('images/input/group_2191.png', width: ScreenUtil().setWidth(25), height: ScreenUtil().setHeight(25),),
-                                              Text('4.5 | 20 Points', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp),)
+                                              Text('4.5 | 20 Points', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp),)
                                             ],
                                           )
                                         )
@@ -156,7 +159,7 @@ class _DetailCollectionState extends State<DetailCollectionScreen> {
                                           width: ScreenUtil().setWidth(125),
                                           child: Align(
                                             alignment: Alignment.centerRight,
-                                            child: Text('03/04/2021', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp),)
+                                            child: Text('03/04/2021', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp),)
                                           ),
                                         ),
                                         Container(
@@ -164,7 +167,7 @@ class _DetailCollectionState extends State<DetailCollectionScreen> {
                                           width: ScreenUtil().setWidth(125),
                                           child: Align(
                                             alignment: Alignment.centerRight,
-                                            child: Text('Verified', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillicBold', fontSize: 18.sp),)
+                                            child: Text('Verified', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillicBold', fontSize: 18.sp),)
                                           ),
                                         )
                                       ],
@@ -186,13 +189,13 @@ class _DetailCollectionState extends State<DetailCollectionScreen> {
                                   children: <Widget>[
                                     Container(
                                       width: ScreenUtil().setWidth(180),
-                                      child: Text('09.30 | 11 Jul 2021', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp),),
+                                      child: Text('09.30 | 11 Jul 2021', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp),),
                                     ),
                                     Container(
                                       width: ScreenUtil().setWidth(206),
                                       child: Align(
                                         alignment: Alignment.centerRight,
-                                        child: Text('Collection Nr.: 3749', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp),),
+                                        child: Text('Collection Nr.: 3749', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp),),
                                       )
                                     )
                                   ],
@@ -212,12 +215,12 @@ class _DetailCollectionState extends State<DetailCollectionScreen> {
                                   Container(
                                     padding: const EdgeInsets.only(top: 20),
                                     width: ScreenUtil().setWidth(386.1),
-                                    child: Text('details of collection', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillicBold', fontSize: 21.sp),),
+                                    child: Text('details of collection', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillicBold', fontSize: 21.sp),),
                                   ),
                                   Container(
                                     padding: const EdgeInsets.only(top: 19, bottom: 10),
                                     width: ScreenUtil().setWidth(386.1),
-                                    child: Text('Category', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 21.sp),),
+                                    child: Text('Category', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 21.sp),),
                                   ),
                                   Container(
                                     padding: const EdgeInsets.only(left: 10),
@@ -229,7 +232,7 @@ class _DetailCollectionState extends State<DetailCollectionScreen> {
                                     ),
                                     child: Align(
                                       alignment: Alignment.centerLeft,
-                                      child: Text('Paper', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 21.sp),),
+                                      child: Text('Paper', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 21.sp),),
                                     )
                                   ),
 
@@ -245,7 +248,7 @@ class _DetailCollectionState extends State<DetailCollectionScreen> {
                                             width: ScreenUtil().setWidth(89.4),
                                             height: ScreenUtil().setHeight(90.4),
                                             decoration: BoxDecoration(
-                                              color: Color(0xFFF8C503),
+                                              color: const Color(0xFFF8C503),
                                               borderRadius: BorderRadius.circular(10)
                                             ),
                                             child: Center(
@@ -265,7 +268,7 @@ class _DetailCollectionState extends State<DetailCollectionScreen> {
                                       children: <Widget>[
                                         Container(
                                           width: ScreenUtil().setWidth(100),
-                                          child: Text('Summary', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 20.sp),),
+                                          child: Text('Summary', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 20.sp),),
                                         ),
                                         Container(
                                           width: ScreenUtil().setWidth(150),
@@ -286,7 +289,7 @@ class _DetailCollectionState extends State<DetailCollectionScreen> {
                                                       keyboardType: TextInputType.number,
                                                       textAlign: TextAlign.center,
                                                       decoration: InputDecoration(
-                                                        labelStyle: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 20.sp),
+                                                        labelStyle: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 20.sp),
                                                         border: InputBorder.none
                                                       ),
                                                     ),
@@ -297,7 +300,7 @@ class _DetailCollectionState extends State<DetailCollectionScreen> {
                                                 width: ScreenUtil().setWidth(40),
                                                 child: Align(
                                                   alignment: Alignment.centerRight,
-                                                  child: Text('kg', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 20.sp),),
+                                                  child: Text('kg', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 20.sp),),
                                                 ),
                                               )
                                             ],
@@ -313,7 +316,7 @@ class _DetailCollectionState extends State<DetailCollectionScreen> {
                                                 width: ScreenUtil().setWidth(110),
                                                 height: ScreenUtil().setHeight(60),
                                                 decoration: BoxDecoration(
-                                                  color: Color(0xFFF8C503),
+                                                  color: const Color(0xFFF8C503),
                                                   borderRadius: BorderRadius.circular(16.7),
                                                   boxShadow: const [BoxShadow(color: Colors.grey, blurRadius: 2, spreadRadius: 0.0, offset: Offset(0, 1))]
                                                 ),
@@ -345,13 +348,13 @@ class _DetailCollectionState extends State<DetailCollectionScreen> {
                                   children: <Widget>[
                                     Container(
                                       width: ScreenUtil().setWidth(190),
-                                      child: Text('Release to Beever', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 20.sp),),
+                                      child: Text('Release to Beever', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 20.sp),),
                                     ),
                                     Container(
                                       width: ScreenUtil().setWidth(195),
                                       child: Align(
                                         alignment: Alignment.centerRight,
-                                        child: Text('Rp -', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillicBold', fontSize: 20.sp),),
+                                        child: Text('Rp -', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillicBold', fontSize: 20.sp),),
                                       )
                                     )
                                   ],
@@ -363,13 +366,13 @@ class _DetailCollectionState extends State<DetailCollectionScreen> {
                                   children: <Widget>[
                                     Container(
                                       width: ScreenUtil().setWidth(190),
-                                      child: Text('Release to Customer', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 20.sp),),
+                                      child: Text('Release to Customer', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 20.sp),),
                                     ),
                                     Container(
                                       width: ScreenUtil().setWidth(195),
                                       child: Align(
                                         alignment: Alignment.centerRight,
-                                        child: Text('Rp -', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillicBold', fontSize: 20.sp),),
+                                        child: Text('Rp -', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillicBold', fontSize: 20.sp),),
                                       )
                                     )
                                   ],
@@ -388,7 +391,7 @@ class _DetailCollectionState extends State<DetailCollectionScreen> {
                             width: ScreenUtil().setWidth(392),
                             height: ScreenUtil().setHeight(70),
                             decoration: BoxDecoration(
-                              color: Color(0xFFF8C503),
+                              color: const Color(0xFFF8C503),
                               borderRadius: BorderRadius.circular(16.7),
                               boxShadow: const [BoxShadow(color: Colors.grey, blurRadius: 2, spreadRadius: 0.0, offset: Offset(0, 1))]
                             ),

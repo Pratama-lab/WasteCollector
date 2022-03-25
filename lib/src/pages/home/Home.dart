@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, sized_box_for_whitespace, avoid_print, unnecessary_string_interpolations, unnecessary_const
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
@@ -52,7 +54,6 @@ class _HomeScreenState extends State<HomeScreen> {
                               children: [
                                 Container(
                                   padding: const EdgeInsets.only(top: 45),
-                                  width: ScreenUtil().setWidth(421),
                                   child: Align(
                                     alignment: Alignment.centerLeft,
                                     child: TouchableOpacity(
@@ -63,23 +64,18 @@ class _HomeScreenState extends State<HomeScreen> {
                                             borderRadius: BorderRadius.circular(60),
                                             child: Image.network(
                                               '${API.API_URL}storage/profile-images/${collector.data.image}',
-                                              width: ScreenUtil().setWidth(60), height: ScreenUtil().setHeight(60),
+                                              width: 60, height: 60,
                                               fit: BoxFit.cover,
                                             ),
                                           ),
                                           Container(
                                             padding: const EdgeInsets.only(left: 11.2),
-                                            width: ScreenUtil().setWidth(360),
+                                            width: MediaQuery.of(context).size.width / 1.4,
                                             child: Column(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
                                               children: [
-                                                Align(
-                                                  alignment: Alignment.centerLeft,
-                                                  child: Text('${collector?.data.fullName}', style: TextStyle(color: Color(0xFFFFFFFF), fontFamily: 'DiodrumCyrillicBold', fontSize: 19.3.sp),),
-                                                ),
-                                                Align(
-                                                  alignment: Alignment.centerLeft,
-                                                  child: Text('Collector', style: TextStyle(color: Color(0xFFFFFFFF), fontFamily: 'DiodrumCyrillic', fontSize: 19.3.sp),)
-                                                )
+                                                Text('${collector?.data.fullName}', style: const TextStyle(color: const Color(0xFFFFFFFF), fontFamily: 'DiodrumCyrillicBold', fontSize: 17),),
+                                                const Text('Collector', style: TextStyle(color: const Color(0xFFFFFFFF), fontFamily: 'DiodrumCyrillic', fontSize: 17),)
                                               ],
                                             )
                                           ),
@@ -89,44 +85,35 @@ class _HomeScreenState extends State<HomeScreen> {
                                   )
                                 ),
                                 Container(
-                                  padding: const EdgeInsets.only(top: 25),
-                                  width: ScreenUtil().setWidth(421.3),
+                                  padding: const EdgeInsets.only(top: 20),
                                   child: Align(
                                     alignment: Alignment.centerLeft,
                                     child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Container(
-                                          width: ScreenUtil().setWidth(221.3),
-                                          child: TouchableOpacity(
-                                            onTap: () async {
-                                              final result = await Navigator.push(context, MaterialPageRoute(builder: (context) => WalletScreen()));
-                                              if (result == 'back') {
-                                                await ApiGetHomeData().getData();
-                                                setState(() {});
-                                              }
-                                            },
-                                            child: Row(
-                                              children: [
-                                                Image.asset('images/home/icon_wallet.png', width: ScreenUtil().setWidth(40), height: ScreenUtil().setHeight(40)),
-                                                Container(
-                                                  padding: const EdgeInsets.only(left: 11.2),
-                                                  child: Column(
-                                                    children: [
-                                                      Text('${format.format(int.parse(collector?.data.balance))}', style: TextStyle(color: Color(0xFFFFFFFF), fontFamily: 'DiodrumCyrillicBold', fontSize: 19.3.sp),)
-                                                    ],
-                                                  )
-                                                ),
-                                              ],
-                                            )
+                                        TouchableOpacity(
+                                          onTap: () async {
+                                            final result = await Navigator.push(context, MaterialPageRoute(builder: (context) => WalletScreen()));
+                                            if (result == 'back') {
+                                              await ApiGetHomeData().getData();
+                                              setState(() {});
+                                            }
+                                          },
+                                          child: Row(
+                                            children: [
+                                              Image.asset('images/home/icon_wallet.png', width: 40, height: 40),
+                                              Container(
+                                                padding: const EdgeInsets.only(left: 11.2),
+                                                child: Column(
+                                                  children: [
+                                                    Text('${format.format(int.parse(collector?.data.balance))}', style: const TextStyle(color: const Color(0xFFFFFFFF), fontFamily: 'DiodrumCyrillicBold', fontSize: 17),)
+                                                  ],
+                                                )
+                                              ),
+                                            ],
                                           )
                                         ),
-                                        Container(
-                                          width: ScreenUtil().setWidth(200),
-                                          child: Align(
-                                            alignment: Alignment.centerRight,
-                                            child: Text('${DateFormat('MMM, d y').format(DateTime.now())}', style: TextStyle(color: Color(0xFFFFFFFF), fontFamily: 'DiodrumCyrillic', fontSize: 19.3.sp),)
-                                          )
-                                        ),
+                                        Text('${DateFormat('MMM, d y').format(DateTime.now())}', style: const TextStyle(color: const Color(0xFFFFFFFF), fontFamily: 'DiodrumCyrillic', fontSize: 17),)
                                       ],
                                     )
                                   )
@@ -163,7 +150,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(16.7),
-                    boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 2, spreadRadius: 0, offset: Offset(0, 1))]
+                    boxShadow: const [BoxShadow(color: Colors.grey, blurRadius: 2, spreadRadius: 0, offset: Offset(0, 1))]
                   ),
                   child: Column(
                     children: [
@@ -174,10 +161,10 @@ class _HomeScreenState extends State<HomeScreen> {
                             padding: const EdgeInsets.only(top: 15.3, left: 12.7),
                             child: Row(
                               children: [
-                                Text('Upcoming Collection', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillicBold', fontSize: 18.sp),),
+                                Text('Upcoming Collection', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillicBold', fontSize: 18.sp),),
                                 Container(
                                   padding: const EdgeInsets.only(left: 14.7),
-                                  child: Text('- Today', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp),)
+                                  child: Text('- Today', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp),)
                                 ),
                               ],
                             )
@@ -192,8 +179,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       Container(
                         padding: const EdgeInsets.only(top: 12.5),
                         width: ScreenUtil().setWidth(389.7),
-                        decoration: BoxDecoration(
-                          border: Border(bottom: BorderSide(color: Color(0xFFDEDEDE),))
+                        decoration: const BoxDecoration(
+                          border: const Border(bottom: BorderSide(color: Color(0xFFDEDEDE),))
                         ),
                       ),
                       Container(
@@ -203,7 +190,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           padding: const EdgeInsets.only(top: 15),
                           shrinkWrap: true,
                           itemCount: 2,
-                          physics: NeverScrollableScrollPhysics(),
+                          physics: const NeverScrollableScrollPhysics(),
                           itemBuilder: (BuildContext context, index) {
                             return Container(
                               width: ScreenUtil().setWidth(389.7),
@@ -216,13 +203,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                       children: [
                                         Align(
                                           alignment: Alignment.centerLeft,
-                                          child: Text('On Going by Sunaryo #2375', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 16.sp),),
+                                          child: Text('On Going by Sunaryo #2375', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 16.sp),),
                                         ),
                                         Container(
                                           padding: const EdgeInsets.only(top: 4),
                                           child: Align(
                                             alignment: Alignment.centerLeft,
-                                            child: Text('8:53 AM - Collection Point Mangkang', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 14.sp),),
+                                            child: Text('8:53 AM - Collection Point Mangkang', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 14.sp),),
                                           )
                                         )
                                       ],
@@ -234,13 +221,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                       children: [
                                         Align(
                                           alignment: Alignment.topCenter,
-                                          child: Text('5 Kg', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 16.sp),),
+                                          child: Text('5 Kg', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 16.sp),),
                                         ),
                                         Container(
                                           padding: const EdgeInsets.only(top: 4),
                                           child: Align(
                                             alignment: Alignment.topCenter,
-                                            child: Text('Est Weight', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 14.sp),),
+                                            child: Text('Est Weight', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 14.sp),),
                                           )
                                         )
                                       ],
@@ -252,13 +239,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                       children: [
                                         Align(
                                           alignment: Alignment.topRight,
-                                          child: Text('Rp 4.000', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 16.sp),),
+                                          child: Text('Rp 4.000', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 16.sp),),
                                         ),
                                         Container(
                                           padding: const EdgeInsets.only(top: 4),
                                           child: Align(
                                             alignment: Alignment.topRight,
-                                            child: Text('Est Price', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 14.sp),),
+                                            child: Text('Est Price', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 14.sp),),
                                           )
                                         )
                                       ],
@@ -285,7 +272,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(16.7),
-                        boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 2, spreadRadius: 0, offset: Offset(0, 1))]
+                        boxShadow: const [BoxShadow(color: Colors.grey, blurRadius: 2, spreadRadius: 0, offset: Offset(0, 1))]
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -294,10 +281,10 @@ class _HomeScreenState extends State<HomeScreen> {
                             padding: const EdgeInsets.only(left: 15.4),
                             child: Row(
                               children: [
-                                Image.asset('images/home/group_2183.png', width: ScreenUtil().setWidth(35), height: ScreenUtil().setHeight(35), color: Color(0xFFF8C503),),
+                                Image.asset('images/home/group_2183.png', width: ScreenUtil().setWidth(35), height: ScreenUtil().setHeight(35), color: const Color(0xFFF8C503),),
                                 Container(
                                   padding: const EdgeInsets.only(left: 10.8),
-                                  child: Text('Input Collection Number', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 20.sp),)
+                                  child: Text('Input Collection Number', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 20.sp),)
                                 ),
                               ],
                             )
@@ -308,7 +295,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               width: ScreenUtil().setWidth(45),
                               height: ScreenUtil().setHeight(45),
                               decoration: BoxDecoration(
-                                color: Color(0xFFF8C503),
+                                color: const Color(0xFFF8C503),
                                 borderRadius: BorderRadius.circular(45)
                               ),
                               child: Center(
@@ -324,7 +311,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                 Container(
                   width: ScreenUtil().setWidth(421.3),
-                  child: Text('Quick Links', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillicBold', fontSize: 22.sp),),
+                  child: Text('Quick Links', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillicBold', fontSize: 22.sp),),
                 ),
                 Container(
                   padding: const EdgeInsets.only(top: 22, bottom: 100),
@@ -340,7 +327,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(16.7),
-                              boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 2, spreadRadius: 0.0, offset: Offset(0, 1))]
+                              boxShadow: const [BoxShadow(color: Colors.grey, blurRadius: 2, spreadRadius: 0.0, offset: Offset(0, 1))]
                             ),
                             child: Column(
                               children: [
@@ -349,7 +336,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   children: [
                                     Container(
                                       padding: const EdgeInsets.only(top: 6, left: 10),
-                                      child: Text('1200', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillicBold', fontSize: 20.sp),),
+                                      child: Text('1200', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillicBold', fontSize: 20.sp),),
                                     ),
                                     Container(
                                       padding: const EdgeInsets.only(top: 6),
@@ -359,7 +346,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                                 Container(
                                   padding: const EdgeInsets.only(top: 9.3, left: 10),
-                                  child: Text('Collection Received', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp),),
+                                  child: Text('Collection Received', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp),),
                                 ),
                                 Container(
                                   padding: const EdgeInsets.only(top: 11.67),
@@ -385,7 +372,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(16.7),
-                              boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 2, spreadRadius: 0.0, offset: Offset(0, 1))]
+                              boxShadow: const [BoxShadow(color: Colors.grey, blurRadius: 2, spreadRadius: 0.0, offset: Offset(0, 1))]
                             ),
                             child: Column(
                               children: [
@@ -394,7 +381,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   children: [
                                     Container(
                                       padding: const EdgeInsets.only(top: 6, left: 10),
-                                      child: Text('100', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillicBold', fontSize: 20.sp),),
+                                      child: Text('100', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillicBold', fontSize: 20.sp),),
                                     ),
                                     Container(
                                       padding: const EdgeInsets.only(top: 6),
@@ -404,7 +391,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                                 Container(
                                   padding: const EdgeInsets.only(top: 9.3, left: 10),
-                                  child: Text('History Transaction', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp),),
+                                  child: Text('History Transaction', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp),),
                                 ),
                                 Container(
                                   padding: const EdgeInsets.only(top: 11.67),

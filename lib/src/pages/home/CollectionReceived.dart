@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, use_key_in_widget_constructors, non_constant_identifier_names, prefer_const_constructors, avoid_print, sized_box_for_whitespace
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:touchable_opacity/touchable_opacity.dart';
@@ -103,7 +105,7 @@ class _CollectionReceivedScreenState extends State<CollectionReceivedScreen> wit
                                 height: ScreenUtil().setHeight(60),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(16.7),
-                                  gradient: LinearGradient(colors: [Color(0xFFF8C503), Color(0xFFFFE067)])
+                                  gradient: LinearGradient(colors: const [Color(0xFFF8C503), Color(0xFFFFE067)])
                                 ),
                                 child: Center(
                                   child: Text('Filter by: All Time, All Status, All Type', style: TextStyle(color: Colors.white, fontFamily: 'DiodrumCyrillicBold', fontSize: 20.sp,),)
@@ -157,7 +159,7 @@ class _CollectionReceivedScreenState extends State<CollectionReceivedScreen> wit
                               decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(10),
-                                boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 2, spreadRadius: 0.0, offset: Offset(0, 1))]
+                                boxShadow: const [BoxShadow(color: Colors.grey, blurRadius: 2, spreadRadius: 0.0, offset: Offset(0, 1))]
                               ),
                               child: Column(
                                 children: [
@@ -294,7 +296,7 @@ class _CollectionReceivedScreenState extends State<CollectionReceivedScreen> wit
                             decoration: BoxDecoration(
                               color: Color(0xFFF8C503),
                               borderRadius: BorderRadius.circular(16),
-                              boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 2, spreadRadius: 0, offset: Offset(0, 1))]
+                              boxShadow: const [BoxShadow(color: Colors.grey, blurRadius: 2, spreadRadius: 0, offset: Offset(0, 1))]
                             ),
                             alignment: Alignment.center,
                             child: Text('Apply', style: TextStyle(color: Colors.white, fontFamily: 'DiodrumCyrillicBold', fontSize: 22.sp))

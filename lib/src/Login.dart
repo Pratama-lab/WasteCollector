@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, use_key_in_widget_constructors, sized_box_for_whitespace
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart' as http;
@@ -12,7 +14,7 @@ import './navigation/Navigator.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
-  _LoginScreenState createState() => new _LoginScreenState();
+  _LoginScreenState createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
@@ -30,15 +32,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void signIn() async {
-    WidgetsFlutterBinding.ensureInitialized();
-    await Firebase.initializeApp(
-      options: const FirebaseOptions(
-        apiKey: 'AIzaSyAegOfRbMJBr2nLkk6vyNH2W-JhSpRX_Sg',
-        appId: '1:25252535526:android:750cf338056ecf55b16f27',
-        messagingSenderId: '25252535526',
-        projectId: 'waste-collection-d96a1'
-      )
-    );
+    await Firebase.initializeApp();
     FirebaseMessaging.instance.getToken()
     .then((deviceToken) async {
       SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -78,7 +72,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: Size(480, 853.3),
+      designSize: const Size(480, 853.3),
       builder: () => Scaffold(
         body: SingleChildScrollView(
           child: Stack(
@@ -93,7 +87,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 10),
-                    child: Text('Waste Collector', style: TextStyle(color: Color(0xFFF8C503), fontFamily: 'DiodrumCyrillicBold', fontSize: 25.sp),),
+                    child: Text('Waste Collector', style: TextStyle(color: const Color(0xFFF8C503), fontFamily: 'DiodrumCyrillicBold', fontSize: 25.sp),),
                   ),
 
                   Container(
@@ -103,9 +97,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: TextFormField(
                         controller: email,
                         keyboardType: TextInputType.emailAddress,
-                        style: TextStyle( color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 20.sp ),
+                        style: TextStyle( color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 20.sp ),
                         decoration: InputDecoration(
-                          labelStyle: TextStyle( color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 20.sp ),
+                          labelStyle: TextStyle( color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 20.sp ),
                           labelText: 'Email',
                           errorText: (_validateEmail) ? 'Email cannot be empty' : null
                         ),
@@ -118,9 +112,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: TextFormField(
                       controller: password,
                       obscureText: _obsecureText,
-                      style: TextStyle( color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 20.sp ),
+                      style: TextStyle( color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 20.sp ),
                       decoration: InputDecoration(
-                        labelStyle: TextStyle( color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 20.sp ),
+                        labelStyle: TextStyle( color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 20.sp ),
                         labelText: 'Password',
                         errorText: (_validatePassword) ? 'Password cannot be empty' : null,
                         suffixIcon: IconButton(
@@ -137,7 +131,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Align(
                       alignment: Alignment.centerRight,
                       child: TouchableOpacity(
-                        child: Text('Forgot Password?', style: TextStyle( color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 20.sp ),)
+                        child: Text('Forgot Password?', style: TextStyle( color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 20.sp ),)
                       ),
                     )
                   ),
@@ -147,7 +141,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     width: ScreenUtil().setWidth(388.7),
                     height: ScreenUtil().setHeight(64.7),
                     child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)), primary: Color(0xFFF8C503)),
+                      style: ElevatedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)), primary: const Color(0xFFF8C503)),
                       onPressed: () {
                         if (email.text.isEmpty) {
                           setState(() {
@@ -166,7 +160,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           signIn();
                         }
                       },
-                      child: Text('Sign In', style: TextStyle( color: Colors.white, fontFamily: 'DiodrumCyrillicBold', fontSize: 21.3.sp ),)
+                      child: Text('Sign In', style: TextStyle( color: Colors.white, fontFamily: 'DiodrumCyrillicBold', fontSize: 22.sp ),)
                     ),
                   )
                 ],
@@ -177,7 +171,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: (loading) ?  Container(
                   width: ScreenUtil().setWidth(480),
                   height: ScreenUtil().setHeight(853.3),
-                  color: Color.fromRGBO(0, 0, 0, 0.5),
+                  color: const Color.fromRGBO(0, 0, 0, 0.5),
                   alignment: Alignment.center,
                   child: Container(
                     width: ScreenUtil().setWidth(100),

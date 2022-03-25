@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, prefer_const_constructors_in_immutables, use_key_in_widget_constructors, unused_field, avoid_print, await_only_futures, unused_local_variable, unnecessary_brace_in_string_interps, sized_box_for_whitespace
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'dart:convert';
@@ -201,10 +203,10 @@ class _EditProfileState extends State<EditProfileScreen> {
         appBar: AppBar(
           title: Text('Edit Profile', style: TextStyle(color: Colors.white, fontFamily: 'DiodrumCyrillicBold', fontSize: 24.sp),),
           centerTitle: true,
-          backgroundColor: Color(0xFFF8C503),
+          backgroundColor: const Color(0xFFF8C503),
           leading: TouchableOpacity(
             onTap: () => Navigator.pop(context, 'back'),
-            child: Icon(Icons.arrow_back_ios_new_rounded, size: 25)
+            child: const Icon(Icons.arrow_back_ios_new_rounded, size: 25)
           ),
           actions: [
             Container(
@@ -244,7 +246,7 @@ class _EditProfileState extends State<EditProfileScreen> {
                               width: ScreenUtil().setWidth(35),
                               height: ScreenUtil().setHeight(35),
                               decoration: BoxDecoration(
-                                color: Color(0xFFF8C503),
+                                color: const Color(0xFFF8C503),
                                 borderRadius: BorderRadius.circular(35)
                               ),
                               child: Center(
@@ -264,42 +266,42 @@ class _EditProfileState extends State<EditProfileScreen> {
                       children: [
                         Container(
                           width: ScreenUtil().setWidth(341.6),
-                          child: Text('Your Name', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp),),
+                          child: Text('Your Name', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp),),
                         ),
                         Container(
                           width: ScreenUtil().setWidth(341.6),
                           child: TextFormField(
                             controller: name,
                             textCapitalization: TextCapitalization.words,
-                            style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp)
+                            style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp)
                           ),
                         ),
 
                         Container(
                           padding: const EdgeInsets.only(top: 24),
                           width: ScreenUtil().setWidth(341.6),
-                          child: Text('Mobile Number', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp),),
+                          child: Text('Mobile Number', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp),),
                         ),
                         Container(
                           width: ScreenUtil().setWidth(341.6),
                           child: TextFormField(
                             controller: phoneNumber,
                             keyboardType: TextInputType.phone,
-                            style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp)
+                            style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp)
                           ),
                         ),
 
                         Container(
                           padding: const EdgeInsets.only(top: 24),
                           width: ScreenUtil().setWidth(341.6),
-                          child: Text('Email Address', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp),),
+                          child: Text('Email Address', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp),),
                         ),
                         Container(
                           width: ScreenUtil().setWidth(341.6),
                           child: TextFormField(
                             controller: email,
                             keyboardType: TextInputType.emailAddress,
-                            style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp)
+                            style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp)
                           ),
                         )
                       ],
@@ -311,7 +313,7 @@ class _EditProfileState extends State<EditProfileScreen> {
                     width: ScreenUtil().setWidth(400),
                     child: Align(
                       alignment: Alignment.centerLeft,
-                      child: Text('Linked Account', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillicBold', fontSize: 20.sp),)
+                      child: Text('Linked Account', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillicBold', fontSize: 20.sp),)
                     )
                   ),
                   Container(
@@ -329,7 +331,7 @@ class _EditProfileState extends State<EditProfileScreen> {
                                 Image.asset('images/profile/group_1669.png', width: ScreenUtil().setWidth(40), height: ScreenUtil().setHeight(40),),
                                 Container(
                                   padding: const EdgeInsets.only(left: 10),
-                                  child: Text('Facebook', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp),)
+                                  child: Text('Facebook', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp),)
                                 )
                               ],
                             )
@@ -347,8 +349,8 @@ class _EditProfileState extends State<EditProfileScreen> {
                                     child: FlutterSwitch(
                                       width: ScreenUtil().setWidth(70),
                                       height: ScreenUtil().setHeight(40),
-                                      inactiveColor: Color(0xFFDEDEDE),
-                                      inactiveToggleColor: Color(0xFFF0F0F0),
+                                      inactiveColor: const Color(0xFFDEDEDE),
+                                      inactiveToggleColor: const Color(0xFFF0F0F0),
                                       value: isSwitchedGoogle,
                                       onToggle: (value) => _onFacebookSignIn()
                                     ),
@@ -359,8 +361,8 @@ class _EditProfileState extends State<EditProfileScreen> {
                                     child: FlutterSwitch(
                                       width: ScreenUtil().setWidth(70),
                                       height: ScreenUtil().setHeight(40),
-                                      activeColor: Color(0xFFC2ECBD),
-                                      activeToggleColor: Color(0xFF2AAE1B),
+                                      activeColor: const Color(0xFFC2ECBD),
+                                      activeToggleColor: const Color(0xFF2AAE1B),
                                       value: !isSwitchedGoogle,
                                       onToggle: (value) => _onFacebookSignOut()
                                     ),
@@ -396,7 +398,7 @@ class _EditProfileState extends State<EditProfileScreen> {
                                 Image.asset('images/profile/group_1670.png', width: ScreenUtil().setWidth(40), height: ScreenUtil().setHeight(40),),
                                 Container(
                                   padding: const EdgeInsets.only(left: 10),
-                                  child: Text('Google', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp),)
+                                  child: Text('Google', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp),)
                                 )
                               ],
                             )
@@ -414,8 +416,8 @@ class _EditProfileState extends State<EditProfileScreen> {
                                     child: FlutterSwitch(
                                       width: ScreenUtil().setWidth(70),
                                       height: ScreenUtil().setHeight(40),
-                                      inactiveColor: Color(0xFFDEDEDE),
-                                      inactiveToggleColor: Color(0xFFF0F0F0),
+                                      inactiveColor: const Color(0xFFDEDEDE),
+                                      inactiveToggleColor: const Color(0xFFF0F0F0),
                                       value: isSwitchedGoogle,
                                       onToggle: (value) => _onGoogleSignIn()
                                     ),
@@ -426,8 +428,8 @@ class _EditProfileState extends State<EditProfileScreen> {
                                     child: FlutterSwitch(
                                       width: ScreenUtil().setWidth(70),
                                       height: ScreenUtil().setHeight(40),
-                                      activeColor: Color(0xFFC2ECBD),
-                                      activeToggleColor: Color(0xFF2AAE1B),
+                                      activeColor: const Color(0xFFC2ECBD),
+                                      activeToggleColor: const Color(0xFF2AAE1B),
                                       value: !isSwitchedGoogle,
                                       onToggle: (value) => _onGoogleSignOut()
                                     ),
@@ -457,7 +459,7 @@ class _EditProfileState extends State<EditProfileScreen> {
                 child: (loading) ? Container(
                   width: ScreenUtil().setWidth(480),
                   height: ScreenUtil().setHeight(853),
-                  color: Color.fromRGBO(0, 0, 0, 0.5),
+                  color: const Color.fromRGBO(0, 0, 0, 0.5),
                   alignment: Alignment.center,
                   child: Container(
                     width: ScreenUtil().setWidth(100),

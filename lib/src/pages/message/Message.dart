@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, use_key_in_widget_constructors, unnecessary_new, sized_box_for_whitespace, unnecessary_const
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:touchable_opacity/touchable_opacity.dart';
@@ -19,7 +21,7 @@ class _MessageScreenState extends State<MessageScreen> {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: Size(480, 904),
+      designSize: const Size(480, 904),
       builder: () => Scaffold(
         body: Align(
           alignment: Alignment.center,
@@ -28,7 +30,7 @@ class _MessageScreenState extends State<MessageScreen> {
               Container(
                 width: ScreenUtil().setWidth(480),
                 height: ScreenUtil().setHeight(280),
-                decoration: BoxDecoration(image: DecorationImage(image: AssetImage('images/heading.png'), fit: BoxFit.fill)),
+                decoration: const BoxDecoration(image: DecorationImage(image: AssetImage('images/heading.png'), fit: BoxFit.fill)),
                 child: Container(
                   padding: const EdgeInsets.only(top: 40),
                   child: Column(
@@ -57,10 +59,10 @@ class _MessageScreenState extends State<MessageScreen> {
                                       decoration: BoxDecoration(
                                         border: Border.all(width: index == 0 ? 0.0 : 1.0, color: index == 0 ? Colors.transparent : Colors.white),
                                         borderRadius: BorderRadius.circular(16.7),
-                                        gradient: index == 0 ? LinearGradient(
-                                          colors: [ Color(0xFFF8C503), Color(0xFFFFE067) ]
+                                        gradient: index == 0 ? const LinearGradient(
+                                          colors: [ const Color(0xFFF8C503), Color(0xFFFFE067) ]
                                         ) : null,
-                                        boxShadow: [BoxShadow(color: index == 0 ? Colors.grey : Colors.transparent, blurRadius: index == 0 ? 2 : 0, spreadRadius: 0.0, offset: Offset(0, 1))]
+                                        boxShadow: [BoxShadow(color: index == 0 ? Colors.grey : Colors.transparent, blurRadius: index == 0 ? 2 : 0, spreadRadius: 0.0, offset: const Offset(0, 1))]
                                       ),
                                       child: Center(
                                         child: Text('Chat', style: TextStyle(color: Colors.white, fontFamily: index == 0 ? 'DiodrumCyrillicBold' : 'DiodrumCyrillic', fontSize: 20.sp),),
@@ -82,10 +84,10 @@ class _MessageScreenState extends State<MessageScreen> {
                                       decoration: BoxDecoration(
                                         border: Border.all(width: index == 1 ? 0.0 : 1.0, color: index == 1 ? Colors.transparent : Colors.white),
                                         borderRadius: BorderRadius.circular(16.7),
-                                        gradient: index == 1 ? LinearGradient(
-                                          colors: [ Color(0xFFF8C503), Color(0xFFFFE067) ]
+                                        gradient: index == 1 ? const LinearGradient(
+                                          colors: [ Color(0xFFF8C503), const Color(0xFFFFE067) ]
                                         ) : null,
-                                        boxShadow: [BoxShadow(color: index == 1 ? Colors.grey : Colors.transparent, blurRadius: index == 1 ? 2 : 0, spreadRadius: 0.0, offset: Offset(0, 1))]
+                                        boxShadow: [BoxShadow(color: index == 1 ? Colors.grey : Colors.transparent, blurRadius: index == 1 ? 2 : 0, spreadRadius: 0.0, offset: const Offset(0, 1))]
                                       ),
                                       child: Center(
                                         child: Text('Inbox', style: TextStyle(color: Colors.white, fontFamily: index == 1 ? 'DiodrumCyrillicBold' : 'DiodrumCyrillic', fontSize: 20.sp),),
@@ -124,7 +126,7 @@ class _MessageScreenState extends State<MessageScreen> {
                               decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(16.7),
-                                boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 2, spreadRadius: 0.0, offset: Offset(0, 1))]
+                                boxShadow: const [BoxShadow(color: Colors.grey, blurRadius: 2, spreadRadius: 0.0, offset: Offset(0, 1))]
                               ),
                               child: Container(
                                 width: ScreenUtil().setWidth(400),
@@ -136,7 +138,7 @@ class _MessageScreenState extends State<MessageScreen> {
                                       height: ScreenUtil().setHeight(60),
                                       alignment: Alignment.center,
                                       decoration: BoxDecoration(
-                                        color: Color(0xFFF8C503),
+                                        color: const Color(0xFFF8C503),
                                         borderRadius: BorderRadius.circular(60)
                                       ),
                                       child: Image.asset('images/message/chat_svgrepo.png', width: ScreenUtil().setWidth(30), height: ScreenUtil().setHeight(30),)
@@ -147,22 +149,22 @@ class _MessageScreenState extends State<MessageScreen> {
                                       child: Column(
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
-                                          Text('Feedback', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp),),
-                                          Text('Rate your order experience!', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp),),
-                                          Text('How many star would you give', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp), maxLines: 1,),
+                                          Text('Feedback', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp),),
+                                          Text('Rate your order experience!', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp),),
+                                          Text('How many star would you give', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp), maxLines: 1,),
                                         ],
                                       ),
                                     ),
                                     Container(
                                       width: ScreenUtil().setWidth(100),
                                       alignment: Alignment.topRight,
-                                      child: Text('Yesterday', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp),),
+                                      child: Text('Yesterday', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp),),
                                     )
                                   ],
                                 ),
                               )
                             ),
-                            Padding(padding: const EdgeInsets.only(top: 20))
+                            const Padding(padding: EdgeInsets.only(top: 20))
                           ],
                         );
                       }
@@ -190,7 +192,7 @@ class _MessageScreenState extends State<MessageScreen> {
                               decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(16.7),
-                                boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 2, spreadRadius: 0.0, offset: Offset(0, 1))]
+                                boxShadow: const [BoxShadow(color: Colors.grey, blurRadius: 2, spreadRadius: 0.0, offset: Offset(0, 1))]
                               ),
                               child: Container(
                                 width: ScreenUtil().setWidth(400),
@@ -213,22 +215,22 @@ class _MessageScreenState extends State<MessageScreen> {
                                       child: Column(
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
-                                          Text('Offer', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp),),
-                                          Text('10% Discount Picking Up Your Order', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp), maxLines: 1,),
-                                          Text('Get your discount now!', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp), maxLines: 1,),
+                                          Text('Offer', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp),),
+                                          Text('10% Discount Picking Up Your Order', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp), maxLines: 1,),
+                                          Text('Get your discount now!', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp), maxLines: 1,),
                                         ],
                                       ),
                                     ),
                                     Container(
                                       width: ScreenUtil().setWidth(100),
                                       alignment: Alignment.topRight,
-                                      child: Text('Yesterday', style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp),),
+                                      child: Text('Yesterday', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp),),
                                     )
                                   ],
                                 ),
                               )
                             ),
-                            Padding(padding: const EdgeInsets.only(top: 20))
+                            const Padding(padding: EdgeInsets.only(top: 20))
                           ],
                         );
                       }

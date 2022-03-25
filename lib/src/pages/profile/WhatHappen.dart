@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, non_constant_identifier_names, override_on_non_overriding_member, sized_box_for_whitespace, avoid_print, avoid_unnecessary_containers
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:touchable_opacity/touchable_opacity.dart';
@@ -22,12 +24,12 @@ class _WhatHappenState extends State<WhatHappen> {
       designSize: const Size(480, 904),
       builder: () => Scaffold(
         appBar: AppBar(
-          backgroundColor: Color(0xFFF8C503),
+          backgroundColor: const Color(0xFFF8C503),
           title: Text('What Happening?', style: TextStyle(color: Colors.white, fontFamily: 'DiodrumCyrillicBold', fontSize: 24.sp),),
           centerTitle: true,
           leading: TouchableOpacity(
             onTap: () => Navigator.pop(context),
-            child: Icon(Icons.arrow_back_ios_new_rounded, size: 25)
+            child: const Icon(Icons.arrow_back_ios_new_rounded, size: 25)
           ),
         ),
         body: SingleChildScrollView(
@@ -51,7 +53,7 @@ class _WhatHappenState extends State<WhatHappen> {
                           children: [
                             Checkbox(value: false, onChanged: (value) => print(value)),
                             Container(
-                              child: Text(what_happen[index], style: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp)),
+                              child: Text(what_happen[index], style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp)),
                             )
                           ],
                         ),
@@ -67,17 +69,17 @@ class _WhatHappenState extends State<WhatHappen> {
                     width: ScreenUtil().setWidth(400),
                     alignment: Alignment.topCenter,
                     decoration: BoxDecoration(
-                      border: Border.all(width: 1, color: Color(0xFFDEDEDE)),
+                      border: Border.all(width: 1, color: const Color(0xFFDEDEDE)),
                       borderRadius: BorderRadius.circular(10)
                     ),
                     child: Container(
                       width: ScreenUtil().setWidth(380),
                       child: TextFormField(
-                        style: TextStyle( color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp ),
+                        style: TextStyle( color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp ),
                         keyboardType: TextInputType.multiline,
                         maxLines: 6,
                         decoration: InputDecoration(
-                          hintStyle: TextStyle(color: Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp),
+                          hintStyle: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp),
                           hintText: 'Describe your reason',
                           border: InputBorder.none
                         ),
@@ -94,7 +96,7 @@ class _WhatHappenState extends State<WhatHappen> {
                       width: ScreenUtil().setWidth(222),
                       height: ScreenUtil().setHeight(65),
                       decoration: BoxDecoration(
-                        color: Color(0xFFF8C503),
+                        color: const Color(0xFFF8C503),
                         borderRadius: BorderRadius.circular(10),
                         boxShadow: const [BoxShadow(color: Colors.grey, blurRadius: 2, spreadRadius: 0, offset: Offset(0, 1))]
                       ),

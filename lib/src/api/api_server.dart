@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 class API {
   static const String API_URL = 'https://staging2.junkbee.id/';
   static const String login = 'api/login';
