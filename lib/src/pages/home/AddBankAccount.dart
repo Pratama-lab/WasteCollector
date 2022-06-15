@@ -1,8 +1,6 @@
-// ignore_for_file: file_names, use_key_in_widget_constructors, non_constant_identifier_names, avoid_types_as_parameter_names, avoid_print, prefer_const_literals_to_create_immutables
+// ignore_for_file: file_names, use_key_in_widget_constructors, non_constant_identifier_names, avoid_types_as_parameter_names, avoid_print, prefer_const_literals_to_create_immutables, library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:touchable_opacity/touchable_opacity.dart';
 
 class AddBankAccountScreen extends StatefulWidget {
   @override
@@ -10,103 +8,126 @@ class AddBankAccountScreen extends StatefulWidget {
 }
 
 class _AddBankAccountState extends State<AddBankAccountScreen> {
-
   @override
   void initState() {
     super.initState();
   }
 
+  _onWillPop() {
+    Navigator.pop(context, 'back');
+  }
+
   @override
   Widget build(BuildContext) {
-    return ScreenUtilInit(
-      designSize: const Size(480, 904),
-      builder: () => Scaffold(
-        appBar: AppBar(
-          title: Text('Add Bank Account', style: TextStyle(color: Colors.white, fontFamily: 'DiodrumCyrillicBold', fontSize: 24.sp),),
-          centerTitle: true,
-          backgroundColor: const Color(0xFFF8C503),
-          leading: TouchableOpacity(
-            onTap: () => Navigator.pop(context),
-            child: const Icon(Icons.arrow_back_ios_new_rounded, size: 25)
-          )
-        ),
-        body: SingleChildScrollView(
-          child: Align(
-            alignment: Alignment.topCenter,
-            child: Column(
-              children: [
+    return WillPopScope(
+      onWillPop: () => _onWillPop(),
+      child: Scaffold(
+          appBar: AppBar(
+              title: const Text('Add Bank Account',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w700,
+                      fontSize: 22)),
+              centerTitle: true,
+              backgroundColor: const Color(0xFFF8C503),
+              leading: GestureDetector(
+                  onTap: () => Navigator.pop(context, 'back'),
+                  child: const Icon(Icons.arrow_back_ios_new_rounded,
+                      color: Colors.white))),
+          body: SingleChildScrollView(
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
                 Container(
-                  padding: const EdgeInsets.only(top: 30),
-                  width: ScreenUtil().setWidth(430),
-                  child: Text('Bank Name', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 16.sp),),
-                ),
+                    padding:
+                        const EdgeInsets.only(top: 30, left: 20, right: 20),
+                    child: const Text('Bank Name',
+                        style: TextStyle(
+                            color: Color(0xFF707070),
+                            fontWeight: FontWeight.w400,
+                            fontSize: 16))),
                 Container(
-                  padding: const EdgeInsets.only(top: 10),
-                  width: ScreenUtil().setWidth(430),
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                      hintText: 'BCA',
-                      hintStyle: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp)
-                    ),
-                  ),
-                ),
-
+                    padding:
+                        const EdgeInsets.only(top: 10, left: 20, right: 20),
+                    child: TextFormField(
+                        style: const TextStyle(
+                            color: Color(0xFF707070),
+                            fontWeight: FontWeight.w400,
+                            fontSize: 17),
+                        decoration: const InputDecoration(
+                            hintText: 'BCA',
+                            hintStyle: TextStyle(
+                                color: Color(0xFF707070),
+                                fontWeight: FontWeight.w400,
+                                fontSize: 17)))),
                 Container(
-                  padding: const EdgeInsets.only(top: 20),
-                  width: ScreenUtil().setWidth(430),
-                  child: Text('Your Account', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 16.sp),),
-                ),
+                    padding:
+                        const EdgeInsets.only(top: 20, left: 20, right: 20),
+                    child: const Text('Your Account',
+                        style: TextStyle(
+                            color: Color(0xFF707070),
+                            fontWeight: FontWeight.w400,
+                            fontSize: 16))),
                 Container(
-                  padding: const EdgeInsets.only(top: 10),
-                  width: ScreenUtil().setWidth(430),
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                      hintText: 'Account Number',
-                      hintStyle: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp)
-                    ),
-                  ),
-                ),
-
+                    padding:
+                        const EdgeInsets.only(top: 10, left: 20, right: 20),
+                    child: TextFormField(
+                        style: const TextStyle(
+                            color: Color(0xFF707070),
+                            fontWeight: FontWeight.w400,
+                            fontSize: 17),
+                        decoration: const InputDecoration(
+                            hintText: 'Account Number',
+                            hintStyle: TextStyle(
+                                color: Color(0xFF707070),
+                                fontWeight: FontWeight.w400,
+                                fontSize: 17)))),
                 Container(
-                  padding: const EdgeInsets.only(top: 20),
-                  width: ScreenUtil().setWidth(430),
-                  child: Text('Alias', style: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 16.sp),),
-                ),
+                    padding:
+                        const EdgeInsets.only(top: 20, left: 20, right: 20),
+                    child: const Text('Alias',
+                        style: TextStyle(
+                            color: Color(0xFF707070),
+                            fontWeight: FontWeight.w400,
+                            fontSize: 16))),
                 Container(
-                  padding: const EdgeInsets.only(top: 10),
-                  width: ScreenUtil().setWidth(430),
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                      hintText: 'Your Name',
-                      hintStyle: TextStyle(color: const Color(0xFF707070), fontFamily: 'DiodrumCyrillic', fontSize: 18.sp)
-                    ),
-                  ),
-                ),
-
+                    padding:
+                        const EdgeInsets.only(top: 10, left: 20, right: 20),
+                    child: TextFormField(
+                        style: const TextStyle(
+                            color: Color(0xFF707070),
+                            fontWeight: FontWeight.w400,
+                            fontSize: 17),
+                        decoration: const InputDecoration(
+                            hintText: 'Your Name',
+                            hintStyle: TextStyle(
+                                color: Color(0xFF707070),
+                                fontWeight: FontWeight.w400,
+                                fontSize: 17)))),
                 Container(
-                  padding: const EdgeInsets.only(top: 200),
-                  width: ScreenUtil().setWidth(430),
-                  child: TouchableOpacity(
-                    onTap: () => print('add bank'),
-                    child: Container(
-                      width: ScreenUtil().setWidth(430),
-                      height: ScreenUtil().setHeight(70),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFF8C503),
-                        borderRadius: BorderRadius.circular(16.7),
-                        boxShadow: [const BoxShadow(color: Color(0xFF707070), blurRadius: 2, spreadRadius: 0.0, offset: Offset(0, 1))]
-                      ),
-                      child: Center(
-                        child: Text('Continue', style: TextStyle(color: Colors.white, fontFamily: 'DiodrumCyrillicBold', fontSize: 22.sp),)
-                      ),
-                    )
-                  ),
-                )
-              ],
-            )
-          ),
-        ),
-      )
+                    padding:
+                        const EdgeInsets.only(top: 200, left: 30, right: 30),
+                    child: GestureDetector(
+                        onTap: () => Navigator.pop(context, 'back'),
+                        child: Container(
+                            height: 65,
+                            decoration: BoxDecoration(
+                                color: const Color(0xFFF8C503),
+                                borderRadius: BorderRadius.circular(16.7),
+                                boxShadow: [
+                                  const BoxShadow(
+                                      color: Color(0xFF707070),
+                                      blurRadius: 2,
+                                      spreadRadius: 0.0,
+                                      offset: Offset(0, 1))
+                                ]),
+                            alignment: Alignment.center,
+                            child: const Text('Continue',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 20)))))
+              ]))),
     );
   }
 }

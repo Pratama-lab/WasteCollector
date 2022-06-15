@@ -1,0 +1,47 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "JunkBeeWasteCollector",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "JunkBeeWasteCollector (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "JunkBeeWasteCollector (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+
+        {
+            "name": "Pixel 3a",
+            "request": "launch",
+            "type": "dart",
+            "deviceId": "emulator-5554"
+        },
+        {
+            "name": "Redmi Note 9",
+            "request": "launch",
+            "type": "dart",
+            "deviceId": "05b690860406"
+        },
+    ],
+    "compounds": [
+        {
+            "name": "All Devices",
+            "configurations": [
+                "Pixel 3a",
+                "Redmi Note 9",
+            ],
+        }
+    ]
+}
