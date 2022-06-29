@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class ShareFeedbackScreen extends StatefulWidget {
   @override
@@ -107,7 +108,14 @@ class _ShareFeedbackState extends State<ShareFeedbackScreen> {
       Container(
           padding: const EdgeInsets.only(top: 50, left: 35, right: 35),
           child: GestureDetector(
-              onTap: () => print('send feedback'),
+              onTap: () {
+                Fluttertoast.showToast(
+                    msg: 'Coming Soon',
+                    backgroundColor: const Color(0xFFF8C503),
+                    fontSize: 18,
+                    textColor: Colors.white,
+                    toastLength: Toast.LENGTH_SHORT);
+              },
               child: Container(
                   height: 65,
                   decoration: BoxDecoration(

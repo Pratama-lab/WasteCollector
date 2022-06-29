@@ -1,4 +1,4 @@
-// ignore_for_file: file_names, use_key_in_widget_constructors, sized_box_for_whitespace, avoid_print, prefer_final_fields, unused_field, unused_import, library_private_types_in_public_api, use_build_context_synchronously
+// ignore_for_file: file_names, use_key_in_widget_constructors, sized_box_for_whitespace, avoid_print, prefer_final_fields, unused_field, unused_import, library_private_types_in_public_api, use_build_context_synchronously, non_constant_identifier_names
 
 import 'dart:convert';
 import 'dart:developer';
@@ -7,6 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'package:loading_indicator/loading_indicator.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:waste_collection/src/api/api_server.dart';
 import './DetailCollector.dart';
 
@@ -52,18 +53,33 @@ class _InputScreenState extends State<InputScreen> {
       },
     );
     Map<String, dynamic> bodyJSON = jsonDecode(response.body);
-    if (bodyJSON['message'] == 'data found') {
+    if (bodyJSON['message'] == 'data found' && bodyJSON['data'].length != 0) {
+      var resp = await http.get(Uri.parse(API.API_URL + API.getWasteList));
+      Map<String, dynamic> JSON = jsonDecode(resp.body);
+      if (JSON['message'] == 'exist') {
+        setState(() => loading = false);
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => DetailCollectionScreen(
+                image: bodyJSON['data'][0]['driver']['image'] ?? 'null',
+                fullName: bodyJSON['data'][0]['driver']['full_name'],
+                created: bodyJSON['data'][0]['driver']['created_at'],
+                orderCode: bodyJSON['data'][0]['order_code'],
+                weight: bodyJSON['data'][0]['total_weight'],
+                total: int.parse(bodyJSON['data'][0]['total']),
+                feeBeever: int.parse(bodyJSON['data'][0]['fee_beever']),
+                urlImages: bodyJSON['data'][0]['url'],
+                type: bodyJSON['data'][0]['images'][0]['waste_type'],
+                images: bodyJSON['data'][0]['images'],
+                pricePaper: JSON['data'][0]['price'],
+                priceMixPaper: JSON['data'][0]['price'])));
+      }
+    } else if (bodyJSON['message'] == 'data found' &&
+        bodyJSON['data'].length == 0) {
       setState(() => loading = false);
-      Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => DetailCollectionScreen(
-              image: bodyJSON['data'][0]['driver']['image'] ?? 'null',
-              fullName: bodyJSON['data'][0]['driver']['full_name'],
-              created: bodyJSON['data'][0]['driver']['created_at'],
-              orderCode: bodyJSON['data'][0]['order_code'],
-              weight: bodyJSON['data'][0]['total_weight'],
-              feeBeever: bodyJSON['data'][0]['fee_beever'],
-              urlImages: bodyJSON['data'][0]['url'],
-              images: bodyJSON['data'][0]['images'])));
+      Fluttertoast.showToast(
+          msg: 'Orderan tidak ditemukan',
+          backgroundColor: const Color(0xFFF8C503),
+          toastLength: Toast.LENGTH_SHORT);
     }
   }
 

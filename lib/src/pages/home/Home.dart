@@ -11,9 +11,9 @@ import 'package:waste_collection/src/services/Notification.dart';
 import 'package:waste_collection/src/api/api_server.dart';
 import 'package:waste_collection/src/api/api_call_get_data.dart';
 import 'package:waste_collection/src/services/string_extension.dart';
-import 'Wallet.dart';
 import 'CollectionReceived.dart';
 import 'History.dart';
+import 'package:waste_collection/src/pages/input/Input.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -176,42 +176,43 @@ class _HomeScreenState extends State<HomeScreen> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          GestureDetector(
-                                              onTap: () async {
-                                                final result =
-                                                    await Navigator.push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                WalletScreen()));
-                                                if (result == 'back') {
-                                                  await ApiGetHomeData()
-                                                      .getData();
-                                                  if (mounted) {
-                                                    setState(() {});
-                                                  }
-                                                }
-                                              },
-                                              child: Row(children: [
-                                                Image.asset(
-                                                    'images/home/icon_wallet.png',
-                                                    width: 40),
-                                                Container(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 10),
-                                                    child: Column(children: [
-                                                      Text(
-                                                          '${format.format(int.parse(collector?.data.balance))}',
-                                                          style: const TextStyle(
-                                                              color: const Color(
-                                                                  0xFFFFFFFF),
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w700,
-                                                              fontSize: 17))
-                                                    ]))
-                                              ])),
+                                          // GestureDetector(
+                                          //     onTap: () async {
+                                          //       final result =
+                                          //           await Navigator.push(
+                                          //               context,
+                                          //               MaterialPageRoute(
+                                          //                   builder: (context) =>
+                                          //                       WalletScreen()));
+                                          //       if (result == 'back') {
+                                          //         await ApiGetHomeData()
+                                          //             .getData();
+                                          //         if (mounted) {
+                                          //           setState(() {});
+                                          //         }
+                                          //       }
+                                          //     },
+                                          //     child: Row(children: [
+                                          //       Image.asset(
+                                          //           'images/home/icon_wallet.png',
+                                          //           width: 40),
+                                          //       Container(
+                                          //           padding:
+                                          //               const EdgeInsets.only(
+                                          //                   left: 10),
+                                          //           child: Column(children: [
+                                          //             Text(
+                                          //                 '${format.format(int.parse(collector?.data.balance))}',
+                                          //                 style: const TextStyle(
+                                          //                     color: const Color(
+                                          //                         0xFFFFFFFF),
+                                          //                     fontWeight:
+                                          //                         FontWeight
+                                          //                             .w700,
+                                          //                     fontSize: 17))
+                                          //           ]))
+                                          //     ])),
+                                          Container(),
                                           Text('$jiffy',
                                               style: const TextStyle(
                                                   color:
@@ -426,9 +427,8 @@ class _HomeScreenState extends State<HomeScreen> {
           transform: Matrix4.translationValues(0.0, -25.0, 0.0),
           padding: const EdgeInsets.only(left: 20, right: 20),
           child: GestureDetector(
-              onTap: () {
-                print('Move to Scan Screen');
-              },
+              onTap: () => Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => InputScreen())),
               child: Container(
                   padding: const EdgeInsets.only(left: 15, right: 15),
                   height: 65,

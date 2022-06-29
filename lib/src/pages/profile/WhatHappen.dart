@@ -1,6 +1,7 @@
 // ignore_for_file: file_names, non_constant_identifier_names, override_on_non_overriding_member, sized_box_for_whitespace, avoid_print, avoid_unnecessary_containers, library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class WhatHappen extends StatefulWidget {
   const WhatHappen({Key? key}) : super(key: key);
@@ -103,7 +104,14 @@ class _WhatHappenState extends State<WhatHappen> {
                           padding: const EdgeInsets.only(
                               top: 100, bottom: 50, left: 10, right: 10),
                           child: GestureDetector(
-                              onTap: () => print('submit'),
+                              onTap: () {
+                                Fluttertoast.showToast(
+                                    msg: 'Coming Soon',
+                                    backgroundColor: const Color(0xFFF8C503),
+                                    fontSize: 18,
+                                    textColor: Colors.white,
+                                    toastLength: Toast.LENGTH_SHORT);
+                              },
                               child: Container(
                                   height: 65,
                                   decoration: BoxDecoration(

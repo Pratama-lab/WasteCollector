@@ -1,8 +1,8 @@
 // ignore_for_file: file_names, use_key_in_widget_constructors, sized_box_for_whitespace, unnecessary_const, duplicate_ignore, prefer_const_literals_to_create_immutables, library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
-
 import 'package:loading_indicator/loading_indicator.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:waste_collection/src/api/api_call_get_data.dart';
 import 'WhatHappen.dart';
 
@@ -138,17 +138,25 @@ class _HelpCentreState extends State<HelpCentreScreen> {
           Container(
               padding: const EdgeInsets.only(left: 20, right: 20),
               child: GestureDetector(
+                  onTap: () {
+                    Fluttertoast.showToast(
+                        msg: 'Coming Soon',
+                        backgroundColor: const Color(0xFFF8C503),
+                        fontSize: 18,
+                        textColor: Colors.white,
+                        toastLength: Toast.LENGTH_SHORT);
+                  },
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                    const Text('Frequently Asked Questions',
-                        style: TextStyle(
-                            color: Color(0xFF707070),
-                            fontWeight: FontWeight.w400,
-                            fontSize: 17)),
-                    const Icon(Icons.arrow_forward_ios_rounded,
-                        color: Color(0xFF707070))
-                  ]))),
+                        const Text('Frequently Asked Questions',
+                            style: TextStyle(
+                                color: Color(0xFF707070),
+                                fontWeight: FontWeight.w400,
+                                fontSize: 17)),
+                        const Icon(Icons.arrow_forward_ios_rounded,
+                            color: Color(0xFF707070))
+                      ]))),
           Padding(
               padding: const EdgeInsets.only(left: 20, right: 20),
               child: Container(
@@ -160,17 +168,25 @@ class _HelpCentreState extends State<HelpCentreScreen> {
           Container(
               padding: const EdgeInsets.only(top: 18, left: 20, right: 20),
               child: GestureDetector(
+                  onTap: () {
+                    Fluttertoast.showToast(
+                        msg: 'Coming Soon',
+                        backgroundColor: const Color(0xFFF8C503),
+                        fontSize: 18,
+                        textColor: Colors.white,
+                        toastLength: Toast.LENGTH_SHORT);
+                  },
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                    const Text('Payment Issue',
-                        style: TextStyle(
-                            color: const Color(0xFF707070),
-                            fontWeight: FontWeight.w400,
-                            fontSize: 17)),
-                    const Icon(Icons.arrow_forward_ios_rounded,
-                        color: Color(0xFF707070))
-                  ]))),
+                        const Text('Payment Issue',
+                            style: TextStyle(
+                                color: const Color(0xFF707070),
+                                fontWeight: FontWeight.w400,
+                                fontSize: 17)),
+                        const Icon(Icons.arrow_forward_ios_rounded,
+                            color: Color(0xFF707070))
+                      ]))),
           Padding(
               padding: const EdgeInsets.only(left: 20, right: 20),
               child: Container(
@@ -182,17 +198,25 @@ class _HelpCentreState extends State<HelpCentreScreen> {
           Container(
               padding: const EdgeInsets.only(top: 18, left: 20, right: 20),
               child: GestureDetector(
+                  onTap: () {
+                    Fluttertoast.showToast(
+                        msg: 'Coming Soon',
+                        backgroundColor: const Color(0xFFF8C503),
+                        fontSize: 18,
+                        textColor: Colors.white,
+                        toastLength: Toast.LENGTH_SHORT);
+                  },
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                    const Text('About My Account',
-                        style: TextStyle(
-                            color: const Color(0xFF707070),
-                            fontWeight: FontWeight.w400,
-                            fontSize: 17)),
-                    const Icon(Icons.arrow_forward_ios_rounded,
-                        color: Color(0xFF707070))
-                  ]))),
+                        const Text('About My Account',
+                            style: TextStyle(
+                                color: const Color(0xFF707070),
+                                fontWeight: FontWeight.w400,
+                                fontSize: 17)),
+                        const Icon(Icons.arrow_forward_ios_rounded,
+                            color: Color(0xFF707070))
+                      ]))),
           Padding(
               padding: const EdgeInsets.only(left: 20, right: 20),
               child: Container(
@@ -204,17 +228,25 @@ class _HelpCentreState extends State<HelpCentreScreen> {
           Container(
               padding: const EdgeInsets.only(top: 18, left: 20, right: 20),
               child: GestureDetector(
+                  onTap: () {
+                    Fluttertoast.showToast(
+                        msg: 'Coming Soon',
+                        backgroundColor: const Color(0xFFF8C503),
+                        fontSize: 18,
+                        textColor: Colors.white,
+                        toastLength: Toast.LENGTH_SHORT);
+                  },
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                    const Text('App Issue',
-                        style: TextStyle(
-                            color: const Color(0xFF707070),
-                            fontWeight: FontWeight.w400,
-                            fontSize: 17)),
-                    const Icon(Icons.arrow_forward_ios_rounded,
-                        color: Color(0xFF707070))
-                  ]))),
+                        const Text('App Issue',
+                            style: TextStyle(
+                                color: const Color(0xFF707070),
+                                fontWeight: FontWeight.w400,
+                                fontSize: 17)),
+                        const Icon(Icons.arrow_forward_ios_rounded,
+                            color: Color(0xFF707070))
+                      ]))),
           Padding(
               padding: const EdgeInsets.only(left: 20, right: 20),
               child: Container(
@@ -330,6 +362,15 @@ class _HelpCentreState extends State<HelpCentreScreen> {
                           Container(
                               padding: const EdgeInsets.only(top: 10, left: 30),
                               child: GestureDetector(
+                                  onTap: () {
+                                    Fluttertoast.showToast(
+                                        msg: 'Coming Soon',
+                                        backgroundColor:
+                                            const Color(0xFFF8C503),
+                                        fontSize: 18,
+                                        textColor: Colors.white,
+                                        toastLength: Toast.LENGTH_SHORT);
+                                  },
                                   child: Container(
                                       width: 158,
                                       height: 35,
@@ -354,11 +395,21 @@ class _HelpCentreState extends State<HelpCentreScreen> {
                         color: Color(0xFF707070),
                         fontWeight: FontWeight.w400,
                         fontSize: 18)),
-                const Text(' MAIL US',
-                    style: TextStyle(
-                        color: Color(0xFFF8C503),
-                        fontWeight: FontWeight.w600,
-                        fontSize: 18))
+                GestureDetector(
+                  onTap: () {
+                    Fluttertoast.showToast(
+                        msg: 'Coming Soon',
+                        backgroundColor: const Color(0xFFF8C503),
+                        fontSize: 18,
+                        textColor: Colors.white,
+                        toastLength: Toast.LENGTH_SHORT);
+                  },
+                  child: const Text(' MAIL US',
+                      style: TextStyle(
+                          color: Color(0xFFF8C503),
+                          fontWeight: FontWeight.w600,
+                          fontSize: 18)),
+                )
               ]))
         ])));
   }

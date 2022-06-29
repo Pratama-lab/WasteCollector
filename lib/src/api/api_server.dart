@@ -15,7 +15,11 @@ class API {
       'api/wastecollector/collection/recive';
   static const String getHistoryTransaction =
       'api/wastecollector/wallet/transaction';
+  static const String getWasteList = 'api/public/waste';
   static const String getCollectorDetail = 'api/wastecollector/collection/';
+  static const String collectionConfirm =
+      'api/wastecollector/collection/confirm';
+  static const String release = 'api/wastecollector/wallet/release';
   static const String top_up = 'api/payment/va';
   static const String cancel_topup = 'api/payment/cancel';
 }

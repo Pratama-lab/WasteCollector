@@ -5,7 +5,6 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
@@ -346,7 +345,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     backgroundColor: Colors.white,
                                     insetPadding: const EdgeInsets.all(0),
                                     child: Container(
-                                        width: 370,
+                                        width: 350,
                                         child: Column(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.center,
@@ -409,7 +408,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                                   child:
                                                                       Container(
                                                                           width:
-                                                                              370,
+                                                                              350,
                                                                           child: Column(
                                                                               mainAxisAlignment: MainAxisAlignment.center,
                                                                               mainAxisSize: MainAxisSize.min,
@@ -421,7 +420,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                                                 ),
                                                                                 Container(
                                                                                   padding: const EdgeInsets.only(bottom: 19),
-                                                                                  width: 350,
+                                                                                  width: 300,
                                                                                   child: const Text('We are happy to hear that you love using JunkBee App! Would you like to share your experience by rating us on the App Store?', style: TextStyle(color: Color(0xFF707070), fontWeight: FontWeight.w400, fontSize: 16), textAlign: TextAlign.center),
                                                                                 ),
                                                                                 Container(width: 300, height: 60, child: ElevatedButton(style: ElevatedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)), primary: const Color(0xFFF8C503)), onPressed: () => Navigator.of(context).pop(), child: const Text('Give Rating', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700, fontSize: 18)))),

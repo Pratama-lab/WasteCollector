@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:loading_indicator/loading_indicator.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:waste_collection/src/api/api_server.dart';
 import './navigation/Navigator.dart';
 
@@ -40,7 +40,8 @@ class _LoginScreenState extends State<LoginScreen> {
           body: json.encode({'email': email.text, 'password': password.text}));
       Map<String, dynamic> bodyJSON = jsonDecode(response.body);
 
-      if (bodyJSON['message'] == 'login success') {
+      if (bodyJSON['message'] == 'login success' &&
+          bodyJSON['data']['role'] == 'waste collector') {
         prefs.setString('token', bodyJSON['data']['token']);
 
         final resp =
@@ -59,11 +60,22 @@ class _LoginScreenState extends State<LoginScreen> {
               MaterialPageRoute(builder: (context) => Navigation()));
         } else {
           setState(() => loading = false);
-          print(tokenJSON['message']);
+          Fluttertoast.showToast(
+              msg: 'Login Gagal \nSilahkan login kembali',
+              backgroundColor: const Color(0xFFF8c503),
+              fontSize: 18,
+              textColor: Colors.white,
+              toastLength: Toast.LENGTH_SHORT);
         }
       } else {
         setState(() => loading = false);
-        print(bodyJSON['message']);
+        Fluttertoast.showToast(
+            msg:
+                'Anda bukan Waste Collector \nSilahkan login dengan akun Waste Collector',
+            backgroundColor: const Color(0xFFF8c503),
+            fontSize: 18,
+            textColor: Colors.white,
+            toastLength: Toast.LENGTH_SHORT);
       }
     });
   }

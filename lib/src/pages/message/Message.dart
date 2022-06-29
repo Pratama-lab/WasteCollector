@@ -122,175 +122,25 @@ class _MessageScreenState extends State<MessageScreen> {
             transform: Matrix4.translationValues(0.0, -50.0, 0.0),
             child: Container(
                 padding: const EdgeInsets.only(left: 20, right: 20),
-                alignment: Alignment.topCenter,
-                child: ListView.builder(
-                    padding: const EdgeInsets.only(bottom: 10),
-                    shrinkWrap: true,
-                    itemCount: 4,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Column(children: [
-                        Container(
-                            padding: const EdgeInsets.only(
-                                top: 15, bottom: 15, left: 10, right: 10),
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(16.7),
-                                boxShadow: const [
-                                  BoxShadow(
-                                      color: Colors.grey,
-                                      blurRadius: 2,
-                                      spreadRadius: 0.0,
-                                      offset: Offset(0, 1))
-                                ]),
-                            child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Row(children: [
-                                    Container(
-                                        width: 40,
-                                        height: 40,
-                                        alignment: Alignment.center,
-                                        decoration: BoxDecoration(
-                                            color: const Color(0xFFF8C503),
-                                            borderRadius:
-                                                BorderRadius.circular(60)),
-                                        child: Image.asset(
-                                            'images/message/chat_svgrepo.png',
-                                            width: 20)),
-                                    Container(
-                                        padding:
-                                            const EdgeInsets.only(left: 10),
-                                        width: 200,
-                                        child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: const [
-                                              Text('Feedback',
-                                                  style: TextStyle(
-                                                      color: const Color(
-                                                          0xFF707070),
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                      fontSize: 16)),
-                                              Text(
-                                                  'Rate your order experience!',
-                                                  style: TextStyle(
-                                                      color: const Color(
-                                                          0xFF707070),
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                      fontSize: 16)),
-                                              Text(
-                                                  'How many star would you give',
-                                                  style: TextStyle(
-                                                      color: const Color(
-                                                          0xFF707070),
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                      fontSize: 16),
-                                                  maxLines: 1,
-                                                  overflow:
-                                                      TextOverflow.ellipsis)
-                                            ]))
-                                  ]),
-                                  const Text('Yesterday',
-                                      style: TextStyle(
-                                          color: Color(0xFF707070),
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 16))
-                                ])),
-                        const Padding(padding: EdgeInsets.only(top: 20))
-                      ]);
-                    })))
+                height: 250,
+                alignment: Alignment.center,
+                child: const Text('Coming soon',
+                    style: TextStyle(
+                        color: Color(0xFF707070),
+                        fontWeight: FontWeight.w500,
+                        fontSize: 18))))
       ] else if (index == 1) ...[
         Container(
             transform: Matrix4.translationValues(0.0, -50.0, 0.0),
             child: Container(
                 padding: const EdgeInsets.only(left: 20, right: 20),
-                alignment: Alignment.topCenter,
-                child: ListView.builder(
-                    padding: const EdgeInsets.only(bottom: 10),
-                    shrinkWrap: true,
-                    itemCount: 4,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Column(children: [
-                        Container(
-                            padding: const EdgeInsets.only(
-                                top: 15, bottom: 15, left: 10, right: 10),
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(16.7),
-                                boxShadow: const [
-                                  BoxShadow(
-                                      color: Colors.grey,
-                                      blurRadius: 2,
-                                      spreadRadius: 0.0,
-                                      offset: Offset(0, 1))
-                                ]),
-                            child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Row(children: [
-                                    Container(
-                                        width: 40,
-                                        height: 40,
-                                        alignment: Alignment.center,
-                                        decoration: BoxDecoration(
-                                            color: Colors.red,
-                                            borderRadius:
-                                                BorderRadius.circular(60)),
-                                        child: Image.asset(
-                                            'images/message/tag_svgrepo.png',
-                                            width: 20)),
-                                    Container(
-                                        padding:
-                                            const EdgeInsets.only(left: 10),
-                                        width: 200,
-                                        child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: const [
-                                              Text('Offer',
-                                                  style: TextStyle(
-                                                      color: const Color(
-                                                          0xFF707070),
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                      fontSize: 16)),
-                                              Text(
-                                                  '10% Discount Picking Up Your Order',
-                                                  style: TextStyle(
-                                                      color: const Color(
-                                                          0xFF707070),
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                      fontSize: 16),
-                                                  maxLines: 1,
-                                                  overflow:
-                                                      TextOverflow.ellipsis),
-                                              Text('Get your discount now!',
-                                                  style: TextStyle(
-                                                      color: const Color(
-                                                          0xFF707070),
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                      fontSize: 16),
-                                                  maxLines: 1,
-                                                  overflow:
-                                                      TextOverflow.ellipsis)
-                                            ]))
-                                  ]),
-                                  const Text('Yesterday',
-                                      style: TextStyle(
-                                          color: const Color(0xFF707070),
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 16))
-                                ])),
-                        const Padding(padding: EdgeInsets.only(top: 20))
-                      ]);
-                    })))
+                height: 250,
+                alignment: Alignment.center,
+                child: const Text('Coming soon',
+                    style: TextStyle(
+                        color: Color(0xFF707070),
+                        fontWeight: FontWeight.w500,
+                        fontSize: 18))))
       ]
     ]));
   }
