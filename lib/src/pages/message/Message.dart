@@ -1,6 +1,7 @@
 // ignore_for_file: file_names, use_key_in_widget_constructors, unnecessary_new, sized_box_for_whitespace, unnecessary_const, library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class MessageScreen extends StatefulWidget {
   @override
@@ -122,25 +123,25 @@ class _MessageScreenState extends State<MessageScreen> {
             transform: Matrix4.translationValues(0.0, -50.0, 0.0),
             child: Container(
                 padding: const EdgeInsets.only(left: 20, right: 20),
-                height: 250,
-                alignment: Alignment.center,
-                child: const Text('Coming soon',
-                    style: TextStyle(
-                        color: Color(0xFF707070),
-                        fontWeight: FontWeight.w500,
-                        fontSize: 18))))
+                alignment: Alignment.topCenter,
+                child: Column(children: [
+                  Lottie.asset('images/animations/coming_soon.json',
+                      height: 200),
+                  Lottie.asset('images/animations/coming_soon_2.json',
+                      height: 300)
+                ])))
       ] else if (index == 1) ...[
         Container(
             transform: Matrix4.translationValues(0.0, -50.0, 0.0),
             child: Container(
                 padding: const EdgeInsets.only(left: 20, right: 20),
-                height: 250,
                 alignment: Alignment.center,
-                child: const Text('Coming soon',
-                    style: TextStyle(
-                        color: Color(0xFF707070),
-                        fontWeight: FontWeight.w500,
-                        fontSize: 18))))
+                child: Column(children: [
+                  Lottie.asset('images/animations/coming_soon.json',
+                      height: 200),
+                  Lottie.asset('images/animations/coming_soon_2.json',
+                      height: 300)
+                ])))
       ]
     ]));
   }
